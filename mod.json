@@ -1,6 +1,6 @@
 name: "ckat-stingray"
-description: "[royal]Adds скат."
+description: "[royal]Adds скат.[]\n\nNow with extra js stuff!"
 displayName: "скат"
 author: "Мнемотехник"
 minGameVersion: "130.0"
-version: "1.0"
+version: "1.1"
