@@ -3,23 +3,35 @@ var CKAT = extendContent(UnitType, "skat", {
 	speed: 1.3,
 	hitSize: 64,
 	canBoost: false,
-	canDrown: true,
+	canDrown: false, //strong скат can't drown
 	health: 621,
 	buildSpeed: 0,
 	armor: 20,
+	
 	research: {
 		parent: UnitTypes.dagger,
 		requirements: ItemStack.with(
-			Items.graphite, 10000,
-			Items.silicon, 10000,
-			Items.titanium, 10000, 
-			Items.metaglass, 2000
+			Items.graphite, 3000,
+			Items.silicon, 3000,
+			Items.titanium, 3000, 
+			Items.metaglass, 600
 		)
+	},
+	
+	//скат gets faster when travels on water: x1.5 speed on normal water, x2.25 on deep
+	update(ckat) {
+		this.super$update(ckat);
+		
+		let tile = Vars.world.tile(ckat.x / 8, ckat.y / 8);
+		if (tile != null) {
+			let floor = tile.floor();
+			if (floor.liquidDrop == Liquids.water) {
+				//Dividing by tile's speed multi nivilates the speed multi of the tile
+				ckat.speedMultiplier *= 1.5 * (floor.isDeep() ? 1.5 : 1) / floor.speedMultiplier;
+			}
+		}
 	}
 });
-
-CKAT.canDrown = true; //????????????????
-//скат is strong and doesn't want to drown
 
 //Idk wtf is this, this was the first solution i found via discord search
 CKAT.constructor = () => extend(UnitEntity, {});
