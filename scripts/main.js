@@ -3,6 +3,7 @@ var CKAT = extendContent(UnitType, "skat", {
 	speed: 1.3,
 	hitSize: 64,
 	canBoost: false,
+	canDrown: true,
 	health: 621,
 	buildSpeed: 0,
 	armor: 20,
@@ -16,6 +17,9 @@ var CKAT = extendContent(UnitType, "skat", {
 		)
 	}
 });
+
+CKAT.canDrown = true; //????????????????
+//скат is strong and doesn't want to drown
 
 //Idk wtf is this, this was the first solution i found via discord search
 CKAT.constructor = () => extend(UnitEntity, {});
