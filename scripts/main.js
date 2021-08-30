@@ -7,6 +7,7 @@ var CKAT = extendContent(UnitType, "skat", {
 	health: 621,
 	buildSpeed: 0,
 	armor: 20,
+	legLength: 0, //ehhhhhhh
 	
 	research: {
 		parent: UnitTypes.dagger,
@@ -33,11 +34,14 @@ var CKAT = extendContent(UnitType, "skat", {
 	}
 });
 
-//Idk wtf is this, this was the first solution i found via discord search
-CKAT.constructor = () => extend(UnitEntity, {});
+//We don't want скат to have legs, do we?
+CKAT.mechStride = 0;
+CKAT.mechStepShake = 0;
+
+CKAT.constructor = () => extend(MechUnit, {});
 CKAT.defaultController = () => extend(GroundAI, {});
 
-Blocks.groundFactory.plans.add(
+Blocks.navalFactory.plans.add(
 	new UnitFactory.UnitPlan(CKAT, 60*30, ItemStack.with(
 		Items.graphite, 100, 
 		Items.silicon, 100,
