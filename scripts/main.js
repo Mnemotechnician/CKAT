@@ -90,7 +90,7 @@ CKAT.defaultController = () => extend(AIController, {
 			if (move) this.pathfind(Pathfinder.fieldCore);
 		}
 		
-		this.faceTarget();
+		if (this.faceTarget) this.faceTarget();
 	}
 });
 
