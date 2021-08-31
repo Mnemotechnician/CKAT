@@ -4,21 +4,22 @@ const AI = require("AIs");
 /*T1 скат*/
 const Urotry = extendContent(UnitType, "skat-t1", {
 	type: "ground",
-	speed: 1,
+	speed: 1.1,
 	hitSize: 16,
 	canBoost: false,
 	canDrown: false, 
-	health: 0,
+	health: 240,
 	buildSpeed: 0,
 	armor: 0,
 	
 	legLength: 0,
+	legCount: 0,
 	mechStride: 0,
 	mechStepShake: 0,
 	
 	abilities: new Seq([
-		Ability.bite(0, 60 / 1, 0, 0),
-		Ability.swim(1)
+		Ability.bite(25, 60 / 3, 270, 10), //75 DPS per each enemy in range
+		Ability.swim(1.5)
 	]),
 	
 	research: {
@@ -39,21 +40,23 @@ Urotry.defaultController = AI.rammer;
 /*T2 скат*/
 const Mylio = extendContent(UnitType, "skat-t2", {
 	type: "ground",
-	speed: 1,
-	hitSize: 0,
+	speed: 0.5,
+	hitSize: 32,
 	canBoost: false,
-	canDrown: false, /*strong скат can't drown*/
-	health: 0,
+	canDrown: false, 
+	health: 650,
 	buildSpeed: 0,
-	armor: 0,
+	armor: 8,
 	
-	legLength: 0, /*ehhhhhhh*/
+	legLength: 0,
+	legCount: 0,
 	mechStride: 0,
 	mechStepShake: 0,
 	
 	abilities: new Seq([
-		Ability.bite(28, 60 / 1, 0, 0),
-		Ability.swim(1)
+		Ability.bite(50, 60 / 4, 30, 40), //200 DPS per each unit in range
+		Ability.swim(2.2)
+		/*Ability.dash(...) TODO*/
 	]),
 	
 	research: {
@@ -76,17 +79,18 @@ const Undulate = extendContent(UnitType, "skat-t3", {
 	speed: 1.2,
 	hitSize: 64,
 	canBoost: false,
-	canDrown: false, /*strong скат can't drown*/
+	canDrown: false, 
 	health: 1300,
 	buildSpeed: 0,
-	armor: 10,
+	armor: 12,
 	
-	legLength: 0, /*ehhhhhhh*/
+	legLength: 0,
+	legCount: 0,
 	mechStride: 0,
 	mechStepShake: 0,
 	
 	abilities: new Seq([
-		Ability.bite(28, 60 / 8, 95, 5),
+		Ability.bite(28, 60 / 8, 95, 32), //224 DPS per each enemy in range
 		Ability.swim(1.35)
 	]),
 	
