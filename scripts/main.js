@@ -8,7 +8,7 @@ const CKAT = extendContent(UnitType, "skat-t3", {
 	hitSize: 64,
 	canBoost: false,
 	canDrown: false, /*strong скат can't drown*/
-	health: 800,
+	health: 1300,
 	buildSpeed: 0,
 	armor: 10,
 	
@@ -17,7 +17,7 @@ const CKAT = extendContent(UnitType, "skat-t3", {
 	mechStepShake: 0,
 	
 	abilities: new Seq([
-		Ability.bite(20, 60 / 8, 80, 5),
+		Ability.bite(28, 60 / 8, 95, 5),
 		Ability.swim(1.35)
 	]),
 	
