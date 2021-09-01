@@ -5,10 +5,10 @@ const AI = require("AIs");
 const Urotry = extendContent(UnitType, "skat-t1", {
 	type: "ground",
 	speed: 1.1,
-	hitSize: 16,
+	hitSize: 27,
 	canBoost: false,
 	canDrown: false, 
-	health: 240,
+	health: 400,
 	buildSpeed: 0,
 	armor: 0,
 	
@@ -20,17 +20,7 @@ const Urotry = extendContent(UnitType, "skat-t1", {
 	abilities: new Seq([
 		Ability.bite(25, 60 / 3, 270, 10), //75 DPS per each enemy in range
 		Ability.swim(1.5)
-	]),
-	
-	research: {
-		parent: UnitTypes.dagger,
-		requirements: ItemStack.with(
-			Items.graphite, 400,
-			Items.silicon, 750,
-			Items.titanium, 230, 
-			Items.metaglass, 230
-		)
-	}
+	])
 });
 Urotry.constructor = () => extend(MechUnit, {});
 Urotry.defaultController = AI.rammer;
@@ -41,7 +31,7 @@ Urotry.defaultController = AI.rammer;
 const Mylio = extendContent(UnitType, "skat-t2", {
 	type: "ground",
 	speed: 0.5,
-	hitSize: 32,
+	hitSize: 37,
 	canBoost: false,
 	canDrown: false, 
 	health: 650,
@@ -55,18 +45,9 @@ const Mylio = extendContent(UnitType, "skat-t2", {
 	
 	abilities: new Seq([
 		Ability.bite(50, 60 / 4, 30, 40), //200 DPS per each unit in range
-		Ability.swim(2.2)
-		/*Ability.dash(...) TODO*/
-	]),
-	
-	research: {
-		parent: Urotry,
-		requirements: ItemStack.with(
-			Items.graphite, 2600,
-			Items.silicon, 4500,
-			Items.titanium, 1200, 
-		)
-	}
+		Ability.swim(2.2),
+		Ability.dash(500, 60 * 10, 30, 8 * 30)
+	])
 });
 Mylio.constructor = () => extend(MechUnit, {});
 Mylio.defaultController = AI.rammer;
@@ -92,17 +73,7 @@ const Undulate = extendContent(UnitType, "skat-t3", {
 	abilities: new Seq([
 		Ability.bite(28, 60 / 8, 95, 32), //224 DPS per each enemy in range
 		Ability.swim(1.35)
-	]),
-	
-	research: {
-		parent: Mylio,
-		requirements: ItemStack.with(
-			Items.lead, 14000,
-			Items.silicon, 10000,
-			Items.titanium, 6000, 
-			Items.metaglass, 3000
-		)
-	}
+	])
 });
 Undulate.constructor = () => extend(MechUnit, {});
 Undulate.defaultController = AI.rammer;
@@ -110,10 +81,12 @@ Undulate.defaultController = AI.rammer;
 
 /*Assigning units to factories*/
 Blocks.navalFactory.plans.add(
-	new UnitFactory.UnitPlan(Urotry, 60*30, ItemStack.with(
+	new UnitFactory.UnitPlan(Urotry, 60 * 30, ItemStack.with(
 		Items.graphite, 20,
 		Items.silicon, 35,
 		Items.titanium, 10, 
 		Items.metaglass, 10
 	))
 );
+Blocks.additiveReconstructor.addUpgrade(Urotry, Mylio);
+Blocks.multiplicativeReconstructor.addUpgrade(Mylio, Undulate);
