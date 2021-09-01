@@ -88,7 +88,7 @@ function SkatDashAbilityLambda(damage_, reload_, angle_, length_) {
 				this.enemy = Units.closestEnemy(skat.team, skat.x, skat.y, this.length + skat.hitSize, e => {
 					let angle = skat.angleTo(e.x, e.y);
 					let angleDist = Math.abs(angle - skat.rotation);
-					return !(angleDist < this.angle || 360 - angleDist < this.angle);
+					return (angleDist < this.angle || 360 - angleDist < this.angle);
 				});
 				
 				if (this.enemy != null) {
