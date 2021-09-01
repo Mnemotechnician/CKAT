@@ -1,3 +1,17 @@
+/*Calls the function provided in the argument and adds the result to the unit's abilities. Required because hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
+hhhhhh hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh hhhhhhhhh aaaaaaaaAAAAAAAAAaa
+i regret doing this. i hope people won't lunch me when I'll commit this*/
+function AbilityInitializatorLambda(func_) {
+	return extend(Ability, {
+		func: func_,
+		
+		update(unit) {
+			unit.abilities = this.func();
+		}
+	});
+};
+
+
 /*скат bite ability, damages any enemies infront of it and randomly applies unmoving effect to units*/
 function SkatBiteAbilityLambda(damage_, reload_, angle_, padding_) {
 	return extendContent(Ability, {
@@ -74,7 +88,7 @@ function SkatDashAbilityLambda(damage_, reload_, angle_, length_) {
 				this.enemy = Units.closestEnemy(skat.team, skat.x, skat.y, this.length + skat.hitSize, e => {
 					let angle = skat.angleTo(e.x, e.y);
 					let angleDist = Math.abs(angle - skat.rotation);
-					return angleDist < this.angle || 360 - angleDist < this.angle;
+					return !(angleDist < this.angle || 360 - angleDist < this.angle);
 				});
 				
 				if (this.enemy != null) {
@@ -92,8 +106,9 @@ function SkatDashAbilityLambda(damage_, reload_, angle_, length_) {
 				return;
 			}
 			
-			let angle = 360 - skat.angleTo(this.enemy);
-			skat.lookAt(angle);
+			let angleNormal = skat.angleTo(this.enemy);
+			let angle = 360 - angleNormal;
+			skat.rotation = angleNormal;
 			
 			if (skat.dst(this.enemy) <= skat.hitSize + this.enemy.hitSize) {
 				let pushForce = (skat.hitSize * skat.hitSize) / (this.enemy.hitSize * this.enemy.hitSize);
@@ -116,7 +131,7 @@ function SkatDashAbilityLambda(damage_, reload_, angle_, length_) {
 			if (!this.isDashing || this.target == null || Units.invalidateTarget(this.enemy)) return;
 			
 			Draw.color(Pal.accent);
-			Lines.circle(this.enemy.x, this.enemy.y, (this.enemy.hitSize * 1.3) / Math.max(this.dashTimer * 0.1, 1));
+			Lines.circle(this.enemy.x, this.enemy.y, this.enemy.hitSize * 1.3);
 		}
 	})
 }
@@ -124,5 +139,6 @@ function SkatDashAbilityLambda(damage_, reload_, angle_, length_) {
 module.exports = {
 	bite: SkatBiteAbilityLambda,
 	swim: SkatSwimAbilityLambda,
-	dash: SkatDashAbilityLambda
+	dash: SkatDashAbilityLambda,
+	init: AbilityInitializatorLambda
 };

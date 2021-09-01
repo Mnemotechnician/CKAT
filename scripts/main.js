@@ -18,8 +18,10 @@ const Urotry = extendContent(UnitType, "skat-t1", {
 	mechStepShake: 0,
 	
 	abilities: new Seq([
-		Ability.bite(25, 60 / 3, 270, 10), //75 DPS per each enemy in range
-		Ability.swim(1.5)
+		Ability.init(() => new Seq([
+			Ability.bite(25, 60 / 3, 270, 10), //75 DPS per each enemy in range
+			Ability.swim(1.5)
+		]))
 	])
 });
 Urotry.constructor = () => extend(MechUnit, {});
@@ -44,10 +46,12 @@ const Mylio = extendContent(UnitType, "skat-t2", {
 	mechStepShake: 0,
 	
 	abilities: new Seq([
-		Ability.bite(50, 60 / 4, 30, 40), //200 DPS per each unit in range
-		Ability.swim(2.2),
-		Ability.dash(500, 60 * 10, 30, 8 * 30)
-	])
+		Ability.init(() => new Seq([
+			Ability.bite(50, 60 / 4, 30, 40), //200 DPS per each unit in range
+			Ability.swim(2.2),
+			Ability.dash(500, 60 * 10, 30, 8 * 30)
+		]))
+	]),
 });
 Mylio.constructor = () => extend(MechUnit, {});
 Mylio.defaultController = AI.rammer;
@@ -71,8 +75,10 @@ const Undulate = extendContent(UnitType, "skat-t3", {
 	mechStepShake: 0,
 	
 	abilities: new Seq([
-		Ability.bite(28, 60 / 8, 95, 32), //224 DPS per each enemy in range
-		Ability.swim(1.35)
+		Ability.init(() => new Seq([
+			Ability.bite(28, 60 / 8, 95, 32), //224 DPS per each enemy in range
+			Ability.swim(1.35)
+		]))
 	])
 });
 Undulate.constructor = () => extend(MechUnit, {});
