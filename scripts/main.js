@@ -19,7 +19,7 @@ const Urotry = extendContent(UnitType, "skat-t1", {
 	
 	abilities: new Seq([
 		Ability.init(() => new Seq([
-			Ability.bite(25, 60 / 3, 270, 10), //75 DPS per each enemy in range
+			Ability.bite(25, 60 / 3, 270, 10, 30), //75 DPS per each enemy in range
 			Ability.swim(1.5)
 		]))
 	])
@@ -47,7 +47,7 @@ const Mylio = extendContent(UnitType, "skat-t2", {
 	
 	abilities: new Seq([
 		Ability.init(() => new Seq([
-			Ability.bite(50, 60 / 4, 30, 40), //200 DPS per each unit in range
+			Ability.bite(50, 60 / 4, 30, 40, 50), //200 DPS per each unit in range
 			Ability.swim(2.2),
 			Ability.dash(500, 60 * 10, 30, 8 * 30)
 		]))
@@ -76,7 +76,7 @@ const Undulate = extendContent(UnitType, "skat-t3", {
 	
 	abilities: new Seq([
 		Ability.init(() => new Seq([
-			Ability.bite(28, 60 / 8, 95, 32), //224 DPS per each enemy in range
+			Ability.bite(28, 60 / 8, 95, 32, 90), //224 DPS per each enemy in range
 			Ability.swim(1.35)
 		]))
 	])

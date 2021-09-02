@@ -13,19 +13,23 @@ function AbilityInitializatorLambda(func_) {
 
 
 /*скат bite ability, damages any enemies infront of it and randomly applies unmoving effect to units*/
-function SkatBiteAbilityLambda(damage_, reload_, angle_, padding_) {
+function SkatBiteAbilityLambda(damage_, reload_, angle_, padding_, maxHeal_) {
 	return extendContent(Ability, {
 		damage: damage_,
 		reload: reload_,
 		angle: angle_ / 2,
 		padding: padding_,
+		maxHeal: maxHeal_ / (60 / reload_), //Max heal per hit
+		
 		reloadTimer: 0,
+		healed: 0,
 		
 		effect: Fx.generate,
 		
 		update(skat) {
 			if ((this.reloadTimer += Time.delta) < this.reload) return;
 			this.reloadTimer = 0; 
+			this.healed = 0;
 			
 			Units.nearbyEnemies(skat.team, skat.x, skat.y, skat.hitSize / 2 + this.padding, enemy => this.attackIfInfront(skat, enemy));
 			Units.nearbyBuildings(skat.x, skat.y, skat.hitSize / 2 + this.padding, enemy => { if (enemy.team != skat.team) this.attackIfInfront(skat, enemy) });
@@ -39,7 +43,11 @@ function SkatBiteAbilityLambda(damage_, reload_, angle_, padding_) {
 			if (angleDist < this.angle || 360 - angleDist < this.angle) {
 				enemy.damage(this.damage);
 				this.effect.at(enemy.x, enemy.y, angle);
-				skat.heal(this.damage / 5);
+				
+				if (this.healed < this.maxHeal) {
+					skat.heal(Math.min(this.damage / 5, Math.max(this.maxHeal - this.healed, 0)));
+					this.healed += this.damage / 5;
+				}
 				
 				if (Mathf.chance(0.07) && enemy instanceof Unit) enemy.apply(StatusEffects.unmoving, 100);
 			}
