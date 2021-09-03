@@ -51,7 +51,7 @@ const Mylio = extendContent(UnitType, "skat-t2", {
 			Ability.swim(2.2),
 			Ability.dash(500, 60 * 10, 30, 8 * 30)
 		]))
-	]),
+	])
 });
 Mylio.constructor = () => extend(MechUnit, {});
 Mylio.defaultController = AI.rammer;
@@ -76,7 +76,7 @@ const Undulate = extendContent(UnitType, "skat-t3", {
 	
 	abilities: new Seq([
 		Ability.init(() => new Seq([
-			Ability.bite(28, 60 / 8, 95, 32, 90), //224 DPS per each enemy in range
+			Ability.bite(28, 60 / 8, 95, 32, 120), //224 DPS per each enemy in range
 			Ability.swim(1.35)
 		]))
 	])
@@ -96,3 +96,12 @@ Blocks.navalFactory.plans.add(
 );
 Blocks.additiveReconstructor.addUpgrade(Urotry, Mylio);
 Blocks.multiplicativeReconstructor.addUpgrade(Mylio, Undulate);
+
+/*Tech tree*/
+function unitTech(unit, parent) {
+	return new TechTree.TechNode(TechTree.get(parent), unit, unit.researchRequirements());
+};
+
+unitTech(Urotry, UnitTypes.dagger);
+unitTech(Mylio, Urotry);
+unitTech(Undulate, Mylio);
