@@ -1,3 +1,5 @@
+const CFx = require("effects");
+
 /*Calls the function provided in the argument and adds the result to the unit's abilities. Required because hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
 hhhhhh hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh hhhhhhhhh aaaaaaaaAAAAAAAAAaa
 i regret doing this. i hope people won't lunch me when I'll commit this*/
@@ -86,7 +88,9 @@ function SkatDashAbilityLambda(damage_, reload_, angle_, length_) {
 		dashTimer: 0,
 		
 		maxDash: length_ / 4 * 1.5, /*1.5 length divided by speed*/
-		speed: 4,
+		speed: 2.5,
+		
+		timer: new Interval(1),
 		
 		
 		update(skat) {
@@ -134,13 +138,20 @@ function SkatDashAbilityLambda(damage_, reload_, angle_, length_) {
 		},
 		
 		draw(skat) {
-			/*TODO: actually make this work (yeah, like I'll do this, yeah)*/
-			/*For a very dumb reason Units.invalidateTarget does not accept null. Thanks, javascript, I won't forget this.*/
-			if (!this.isDashing || this.target == null || Units.invalidateTarget(this.enemy)) return;
+			/*Forget the comment that was here, that's just me being dum dum*/
+			if (!this.isDashing || Units.invalidateTarget(this.enemy, skat.team, skat.x, skat.y)) return;
 			
 			Draw.color(Pal.accent);
-			Lines.circle(this.enemy.x, this.enemy.y, this.enemy.hitSize * 1.3);
-		}
+			Lines.circle(this.enemy.x, this.enemy.y, (this.enemy.hitSize * 1.5) / Math.min(skat.dst(this.enemy) / 80, 1.5));
+			
+			if (this.timer.get(8)) CFx.moveArrow.at(skat.x, skat.y, skat.rotation);
+		},
+		
+		displayBars(skat, bars) {
+        	bars.add(new Bar("stat.ckat-stingray-dashReload", Pal.accent, 
+        		() => this.isDashing ? Math.min(this.dashTimer / this.maxDash, 1) : Math.min(this.reloadTimer / this.reload)
+        	)).row();
+    	}
 	})
 }
 
