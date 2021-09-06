@@ -62,12 +62,15 @@ function SkatSwimAbilityLambda(multiplier_) {
 	return extend(Ability, {
 		multiplier: multiplier_,
 		
+		isSwimming: false,
+		
 		update(skat) {
 			let tile = Vars.world.tile(skat.x / 8, skat.y / 8);
 			if (tile != null) {
 				let floor = tile.floor();
-				if (floor.liquidDrop == Liquids.water) {
-					/*Dividing by tile's speed multi nivilates the speed multi of the tile*/
+				this.isSwimming = floor.liquidDrop == Liquids.water;
+				
+				if (this.isSwimming) {
 					skat.speedMultiplier *= (floor.isDeep() ? this.multiplier * this.multiplier : this.multiplier) / floor.speedMultiplier;
 				}
 			}
@@ -75,6 +78,7 @@ function SkatSwimAbilityLambda(multiplier_) {
 	});
 }
 
+/*Skat dash ability, скат will periodically dash on the closest enemy infront of it, dealing high damage and pushing the enemy back (force is based on masses of both units)*/
 function SkatDashAbilityLambda(damage_, reload_, angle_, length_) {
 	return extend(Ability, {
 		damage: damage_,
@@ -87,7 +91,7 @@ function SkatDashAbilityLambda(damage_, reload_, angle_, length_) {
 		reloadTimer: 0,
 		dashTimer: 0,
 		
-		maxDash: length_ / 4 * 1.5, /*1.5 length divided by speed*/
+		maxDash: length_ / 2.5 * 1.5, /*1.5 length divided by speed*/
 		speed: 2.5,
 		
 		timer: new Interval(1),
@@ -138,7 +142,6 @@ function SkatDashAbilityLambda(damage_, reload_, angle_, length_) {
 		},
 		
 		draw(skat) {
-			/*Forget the comment that was here, that's just me being dum dum*/
 			if (!this.isDashing || Units.invalidateTarget(this.enemy, skat.team, skat.x, skat.y)) return;
 			
 			Draw.color(Pal.accent);

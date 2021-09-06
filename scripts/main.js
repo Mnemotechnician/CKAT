@@ -17,6 +17,8 @@ const Urotry = extendContent(UnitType, "skat-t1", {
 	mechStride: 0,
 	mechStepShake: 0,
 	
+	immunities: ObjectSet.with(StatusEffects.wet),
+	
 	abilities: new Seq([
 		Ability.init(() => new Seq([
 			Ability.bite(25, 60 / 3, 270, 10, 30), //75 DPS per each enemy in range
@@ -44,6 +46,8 @@ const Mylio = extendContent(UnitType, "skat-t2", {
 	legCount: 0,
 	mechStride: 0,
 	mechStepShake: 0,
+	
+	immunities: ObjectSet.with(StatusEffects.wet),
 	
 	abilities: new Seq([
 		Ability.init(() => new Seq([
@@ -73,6 +77,8 @@ const Undulate = extendContent(UnitType, "skat-t3", {
 	legCount: 0,
 	mechStride: 0,
 	mechStepShake: 0,
+	
+	immunities: ObjectSet.with(StatusEffects.wet),
 	
 	abilities: new Seq([
 		Ability.init(() => new Seq([
