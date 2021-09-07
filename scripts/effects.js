@@ -9,6 +9,17 @@ const moveArrow = new Effect(60, e => {
 	Draw.color();
 });
 
+const hurricaneSpawn = new Effect(10, e => {
+	let size = 20 * e.fslope();
+	
+	Draw.alpha(e.fin());
+	Draw.color(Pal.sap);
+	Lines.lineAngle(e.x, e.y, e.rotation - 15, size);
+	Lines.lineAngle(e.x, e.y, e.rotation, size);
+	Lines.lineAngle(e.x, e.y, e.rotation + 15, size);
+})
+
 module.exports = {
-	moveArrow: moveArrow
+	moveArrow: moveArrow,
+	hurricaneSpawn: hurricaneSpawn
 }

@@ -1,3 +1,5 @@
+const CFx = require("effects");
+
 const hurricaneWeapon = extendContent(Weapon, "hurricane-generator", {
 	top: true,
 	x: 0,
@@ -5,12 +7,14 @@ const hurricaneWeapon = extendContent(Weapon, "hurricane-generator", {
 	reload: 90,
 	recoil: 8,
 	shake: 1,
-	/*ejectEffect: TODO*/
+	ejectEffect: CFx.hurricaneSpawn,
 	
 	bullet: extend(BulletType, {
 		collides: false,
 		lifetime: 400,
 		homingPower: 0.02,
+		shootEffect: Fx.none,
+		despawnEffect: Fx.none,
 		
 		suckRadius: 80,
 		power: 10,
@@ -24,7 +28,7 @@ const hurricaneWeapon = extendContent(Weapon, "hurricane-generator", {
 			this.super$update(bullet);
 			
 			Units.nearbyEnemies(bullet.owner.team, bullet.x, bullet.y, this.suckRadius, enemy => {
-				let power = this.power / Math.cbrt(bullet.dst2(enemy) * enemy.hitSize);
+				let power = this.power / Math.cbrt(bullet.dst2(enemy) * enemy.hitSize) * bullet.fout();
 				let angle = enemy.angleTo(bullet); 
 				
 				enemy.vel.x += Angles.trnsx(angle, power * Time.delta);
@@ -37,6 +41,7 @@ const hurricaneWeapon = extendContent(Weapon, "hurricane-generator", {
 		draw(bullet) {
 			this.super$draw(bullet);
 			
+			Draw.alpha(bullet.fin() * 40); /*10 ticks until full visibility*/
 			Draw.rect(this.drawRegion, bullet.x, bullet.y, this.visualSize * bullet.fout(), this.visualSize * bullet.fout(), bullet.fout() * 2880);
 		},
 		
