@@ -91,6 +91,39 @@ Undulate.constructor = () => extend(MechUnit, {});
 Undulate.defaultController = AI.rammer;
 
 
+
+/*WORSHIP THE MIGHTY T4 СКАТ!!!*/
+const Dasya = extendContent(UnitType, "skat-t4", {
+	type: "ground",
+
+	speed: 0.9,
+
+	hitSize: 96,
+	canBoost: false,
+	canDrown: false, 
+	health: 9100,
+	buildSpeed: 0,
+	armor: 24,
+	
+	legLength: 0,
+	legCount: 0,
+	mechStride: 0,
+	mechStepShake: 0,
+	
+	immunities: ObjectSet.with(StatusEffects.wet, StatusEffects.freezing),
+	
+	abilities: new Seq([
+		Ability.init(() => new Seq([
+			Ability.bite(100, 60 / 5, 140, 32, 350), //500 DPS per each enemy in range
+			Ability.swim(1.3),
+			Ability.dash(2300, 60 * 15, 40, 8 * 40)
+		]))
+	])
+})
+Dasya.constructor = () => extend(MechUnit, {});
+Dasya.defaultController = AI.rammer;
+
+
 /*Assigning units to factories*/
 Blocks.navalFactory.plans.add(
 	new UnitFactory.UnitPlan(Urotry, 60 * 30, ItemStack.with(
@@ -102,6 +135,7 @@ Blocks.navalFactory.plans.add(
 );
 Blocks.additiveReconstructor.addUpgrade(Urotry, Mylio);
 Blocks.multiplicativeReconstructor.addUpgrade(Mylio, Undulate);
+Blocks.exponentialReconstructor.addUpgrade(Undulate, Dasya);
 
 /*Tech tree*/
 function unitTech(unit, parent) {
@@ -111,3 +145,4 @@ function unitTech(unit, parent) {
 unitTech(Urotry, UnitTypes.dagger);
 unitTech(Mylio, Urotry);
 unitTech(Undulate, Mylio);
+unitTech(Dasya, Undulate);

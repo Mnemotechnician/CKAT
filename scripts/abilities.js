@@ -1,8 +1,6 @@
 const CFx = require("effects");
 
-/*Calls the function provided in the argument and adds the result to the unit's abilities. Required because hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
-hhhhhh hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh hhhhhhhhh aaaaaaaaAAAAAAAAAaa
-i regret doing this. i hope people won't lunch me when I'll commit this*/
+/*I'm just hhh*/
 function AbilityInitializatorLambda(func_) {
 	return extend(Ability, {
 		func: func_,
@@ -104,7 +102,7 @@ function SkatDashAbilityLambda(damage_, reload_, angle_, length_) {
 				this.enemy = Units.closestEnemy(skat.team, skat.x, skat.y, this.length + skat.hitSize, e => {
 					let angle = skat.angleTo(e.x, e.y);
 					let angleDist = Math.abs(angle - skat.rotation);
-					return (angleDist < this.angle || 360 - angleDist < this.angle);
+					return (angleDist < this.angle || 360 - angleDist < this.angle) && e.maxHealth * 4 > this.damage;
 				});
 				
 				if (this.enemy != null) {
