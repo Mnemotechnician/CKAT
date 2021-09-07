@@ -6,6 +6,7 @@ const RammerAI = () => extend(AIController, {
             this.target = this.targetFlag(skat.x, skat.y, BlockFlag.rally, false);
             if(this.target != null && !skat.within(this.target, 70)){
 				this.pathfind(Pathfinder.fieldRally);
+				this.faceTarget();
 				return;
 			}
 		}
@@ -20,7 +21,7 @@ const RammerAI = () => extend(AIController, {
 			if (move) this.pathfind(Pathfinder.fieldCore);
 		}
 		
-		if (this.faceTarget) this.faceTarget();
+		this.faceTarget();
 	}
 });
 

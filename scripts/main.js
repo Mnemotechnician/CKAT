@@ -1,5 +1,6 @@
 const Ability = require("abilities");
 const AI = require("AIs");
+const Weapon = require("weapons");
 
 /*T1 скат*/
 const Urotry = extendContent(UnitType, "skat-t1", {
@@ -111,6 +112,8 @@ const Dasya = extendContent(UnitType, "skat-t4", {
 	mechStepShake: 0,
 	
 	immunities: ObjectSet.with(StatusEffects.wet, StatusEffects.freezing),
+	
+	weapons: Seq.with(Weapon.hurricane),
 	
 	abilities: new Seq([
 		Ability.init(() => new Seq([

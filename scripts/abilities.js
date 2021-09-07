@@ -90,7 +90,7 @@ function SkatDashAbilityLambda(damage_, reload_, angle_, length_) {
 		dashTimer: 0,
 		
 		maxDash: length_ / 2.5 * 1.5, /*1.5 length divided by speed*/
-		speed: 2.5,
+		speed: 2,
 		
 		timer: new Interval(1),
 		
@@ -120,22 +120,21 @@ function SkatDashAbilityLambda(damage_, reload_, angle_, length_) {
 				return;
 			}
 			
-			let angleNormal = skat.angleTo(this.enemy);
-			let angle = 360 - angleNormal;
-			skat.rotation = angleNormal;
+			let angle = skat.angleTo(this.enemy);
+			skat.rotation = angle;
 			
 			if (skat.dst(this.enemy) <= skat.hitSize + this.enemy.hitSize) {
 				let pushForce = (skat.hitSize * skat.hitSize) / (this.enemy.hitSize * this.enemy.hitSize);
 				
-				this.enemy.vel.x += Mathf.sin(angle) * pushForce;
-				this.enemy.vel.y += Mathf.cos(angle) * pushForce;
+				this.enemy.vel.x += Angles.trnsx(angle, pushForce);
+				this.enemy.vel.y += Angles.trnsy(angle, pushForce);
 				this.enemy.damage(this.damage);
 				
 				this.isDashing = false;
 				this.dashTimer = 0;
 			} else {
-				skat.vel.x += Mathf.sin(angle) * this.speed;
-				skat.vel.y += Mathf.cos(angle) * this.speed;
+				skat.vel.x += Angles.trnsx(angle, this.speed * Time.delta);
+				skat.vel.y += Angles.trnsy(angle, this.speed * Time.delta);
 			}
 		},
 		
