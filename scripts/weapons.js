@@ -18,7 +18,7 @@ const hurricaneWeapon = extendContent(Weapon, "hurricane-generator", {
 		
 		suckRadius: 80,
 		power: 10,
-		visualSize: 64,
+		visualSize: 96,
 		
 		load() {
 			this.drawRegion = Core.atlas.find("ckat-stingray-hurricane");
@@ -41,7 +41,7 @@ const hurricaneWeapon = extendContent(Weapon, "hurricane-generator", {
 		draw(bullet) {
 			this.super$draw(bullet);
 			
-			Draw.alpha(bullet.fin() * 40); /*10 ticks until full visibility*/
+			Draw.alpha((bullet.fin() - 0.0125) * 40); /*5 + 10 ticks until full visibility*/
 			Draw.rect(this.drawRegion, bullet.x, bullet.y, this.visualSize * bullet.fout(), this.visualSize * bullet.fout(), bullet.fout() * 2880);
 		},
 		

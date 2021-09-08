@@ -11,12 +11,16 @@ const moveArrow = new Effect(60, e => {
 
 const hurricaneSpawn = new Effect(10, e => {
 	let size = 20 * e.fslope();
+	let ox = Angles.trnsx(e.rotation, 20), oy = Angles.trnsy(e.rotation, 20);
 	
 	Draw.alpha(e.fin());
-	Draw.color(Pal.sap);
-	Lines.lineAngle(e.x, e.y, e.rotation - 15, size);
-	Lines.lineAngle(e.x, e.y, e.rotation, size);
-	Lines.lineAngle(e.x, e.y, e.rotation + 15, size);
+	Draw.color(Pal.spore);
+	Lines.lineAngle(e.x - ox, e.y - oy, e.rotation - 15, size);
+	Lines.lineAngle(e.x - ox, e.y - oy, e.rotation, size);
+	Lines.lineAngle(e.x - ox, e.y - oy, e.rotation + 15, size);
+	
+	if (e.data instanceof Team) Drawf.light(e.data(), e.x, e.y, 16, Pal.reactorPurple, 0.5);
+	else Drawf.light(e.x, e.y, 16, Pal.reactorPurple, 0.5);
 })
 
 module.exports = {
