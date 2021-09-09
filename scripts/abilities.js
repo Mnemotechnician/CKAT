@@ -3,10 +3,16 @@ const CFx = require("effects");
 /*I'm just hhh*/
 function AbilityInitializatorLambda(func_) {
 	return extend(Ability, {
-		func: func_,
+		abilities: func_(),
 		
 		update(unit) {
-			unit.abilities = this.func();
+			unit.abilities = this.abilities;
+		}, 
+		
+		localized() {
+			let string = "multiplex: {\n    ";
+			this.abilities.each(a => string += a.localized() + ";\n    ");
+			return string.substr(0, string.length - 4) + "}"; /*-4 removes unnecessary tab*/
 		}
 	});
 };
@@ -17,7 +23,7 @@ function SkatBiteAbilityLambda(damage_, reload_, angle_, padding_, maxHeal_) {
 	return extendContent(Ability, {
 		damage: damage_,
 		reload: reload_,
-		angle: angle_ / 2,
+		angle: angle_,
 		padding: padding_,
 		maxHeal: maxHeal_ / (60 / reload_), //Max heal per hit
 		
@@ -51,6 +57,17 @@ function SkatBiteAbilityLambda(damage_, reload_, angle_, padding_, maxHeal_) {
 				
 				if (Mathf.chance(0.07) && enemy instanceof Unit) enemy.apply(StatusEffects.unmoving, 100);
 			}
+		},
+		
+		localized() {
+			return getBundle("biteAbility") 
+				   + ": [grey]"  + this.damage * (60 / this.reload) 
+				   + "[] "       + getBundle("stat.dps") 
+				   + " & [grey]" + this.maxHeal * (60 / this.reload)
+				   + "[] "       + getBundle("stat.selfheal")
+				   + ", [grey]"  + this.padding / 8 
+				   + "[] "       + getBundle("stat.range")
+				   + " ([grey]"  + this.angle + "[]°)"
 		}
 	});
 };
@@ -72,6 +89,14 @@ function SkatSwimAbilityLambda(multiplier_) {
 					skat.speedMultiplier *= (floor.isDeep() ? this.multiplier * this.multiplier : this.multiplier) / floor.speedMultiplier;
 				}
 			}
+		},
+		
+		localized() {
+			return getBundle("swimAbility") 
+				   + ": [grey]" + this.multiplier 
+				   + "[]x "     + getBundle("stat.speed-on-water") 
+				   + ", [grey]" + (this.multiplier * this.multiplier).toFixed(2)
+				   + "[]x "     + getBundle("stat.speed-on-deep-water");
 		}
 	});
 }
@@ -151,8 +176,25 @@ function SkatDashAbilityLambda(damage_, reload_, angle_, length_) {
         	bars.add(new Bar("stat.ckat-stingray-dashReload", Pal.accent, 
         		() => this.isDashing ? Math.min(this.dashTimer / this.maxDash, 1) : Math.min(this.reloadTimer / this.reload)
         	)).row();
+		},
+		
+		localized() {
+			return getBundle("dashAbility")
+				   + ": [grey]" + this.damage 
+				   + "[] "      + getBundle("stat.damage-hit")
+				   + ", [grey]" + this.length / 8
+				   + "[] "      + getBundle("stat.range")
+				   + " ([grey]" + this.angle + "[]°)"
+				   + ", [grey]" + (this.reload / 60).toFixed(2)
+				   + "[] "      + getBundle("stat.reload");
     	}
 	})
+};
+
+
+//util
+function getBundle(name) {
+	return Core.bundle.get("ckat-stingray-" + name);
 }
 
 module.exports = {
