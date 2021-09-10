@@ -65,7 +65,7 @@ function SkatBiteAbilityLambda(damage_, reload_, angle_, padding_, maxHeal_) {
 				   + "[] "       + getBundle("stat.dps") 
 				   + ", "        + getBundle("stat.selfheal")
 				   + ": [grey]"  + this.maxHeal * (60 / this.reload)
-				   + "[] "       + getBundle("measure.health")
+				   + "[] "       + getBundle("measure.health-sec")
 				   + ", "        + getBundle("stat.range")
 				   + ": [grey]"  + this.padding / 8 
 				   + "[] "       + getBundle("measure.blocks")
