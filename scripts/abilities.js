@@ -11,8 +11,8 @@ function AbilityInitializatorLambda(func_) {
 		
 		localized() {
 			let string = "multiplex: {\n    ";
-			this.abilities.each(a => string += a.localized() + ";\n    ");
-			return string.substr(0, string.length - 4) + "}"; /*-4 removes unnecessary tab*/
+			this.abilities.each(a => string += a.localized() + "[];\n    ");
+			return string.substr(0, string.length - 4) + "[]}"; /*-4 removes unnecessary tab*/
 		}
 	});
 };
@@ -63,10 +63,12 @@ function SkatBiteAbilityLambda(damage_, reload_, angle_, padding_, maxHeal_) {
 			return getBundle("biteAbility") 
 				   + ": [grey]"  + this.damage * (60 / this.reload) 
 				   + "[] "       + getBundle("stat.dps") 
-				   + " & [grey]" + this.maxHeal * (60 / this.reload)
-				   + "[] "       + getBundle("stat.selfheal")
-				   + ", [grey]"  + this.padding / 8 
-				   + "[] "       + getBundle("stat.range")
+				   + ", "        + getBundle("stat.selfheal")
+				   + ": [grey]"  + this.maxHeal * (60 / this.reload)
+				   + "[] "       + getBundle("measure.health")
+				   + ", "        + getBundle("stat.range")
+				   + ": [grey]"  + this.padding / 8 
+				   + "[] "       + getBundle("measure.blocks")
 				   + " ([grey]"  + this.angle + "[]°)"
 		}
 	});
@@ -182,11 +184,13 @@ function SkatDashAbilityLambda(damage_, reload_, angle_, length_) {
 			return getBundle("dashAbility")
 				   + ": [grey]" + this.damage 
 				   + "[] "      + getBundle("stat.damage-hit")
-				   + ", [grey]" + this.length / 8
-				   + "[] "      + getBundle("stat.range")
+				   + ", "       + getBundle("stat.range")
+				   + ": [grey]" + this.length / 8
+				   + "[] "      + getBundle("measure.blocks")
 				   + " ([grey]" + this.angle + "[]°)"
-				   + ", [grey]" + (this.reload / 60).toFixed(2)
-				   + "[] "      + getBundle("stat.reload");
+				   + ", "       + getBundle("stat.reload")
+				   + ": [grey]" + (this.reload / 60).toFixed(2)
+				   + "[] "      + getBundle("measure.seconds");
     	}
 	})
 };
