@@ -19,10 +19,11 @@ Events.on(ClientLoadEvent, () => {
 					dialog.cont.add("@ckat-stingray.update").row();
 					dialog.cont.add(Core.bundle.format("ckat-stingray.version", mod.meta.version, latest)).padBottom(60).row();
 					dialog.cont.add("@ckat-stingray.update-tip").padBottom(30).row();
+					dialog.cont.image(Core.atlas.find("ckat-stingray-ckat")).size(100, 100).marginBottom(30).row();
 					dialog.cont.button("@ckat-stingray.dismiss", () => dialog.hide()).size(200, 50);
 					dialog.show();
 				} else {
-					Log.info("New version available!")
+					Log.info("New ckat version available!")
 				}
 			}
 		});
