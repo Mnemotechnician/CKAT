@@ -1,6 +1,7 @@
 const Ability = require("abilities");
 const AI = require("AIs");
 const Weapon = require("weapons");
+require("updates");
 
 /*T1 скат*/
 const Urotry = extend(UnitType, "skat-t1", {

@@ -3,4 +3,5 @@ description: "[royal]Adds a unique скат unit branch.[]\n\nNow with extra js 
 displayName: "скат"
 author: "Мнемотехник"
 minGameVersion: "133"
-version: "1.6"
+//!!! MUST NEVER BE LOWER THAN THE PREVIOUS VERSION !!!
+version: "1.61"
