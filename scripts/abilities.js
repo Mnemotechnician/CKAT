@@ -3,15 +3,15 @@ const CFx = require("effects");
 /*I'm just hhh*/
 function AbilityInitializatorLambda(func_) {
 	return extend(Ability, {
-		abilities: func_(),
+		abilities: func_,
 		
 		update(unit) {
-			unit.abilities = this.abilities;
+			unit.abilities = this.abilities();
 		}, 
 		
 		localized() {
 			let string = "multiplex: {\n    ";
-			this.abilities.each(a => string += a.localized() + "[];\n    ");
+			this.abilities().each(a => string += a.localized() + "[];\n    ");
 			return string.substr(0, string.length - 4) + "[]}"; /*-4 removes unnecessary tab*/
 		}
 	});
@@ -74,31 +74,34 @@ function SkatBiteAbilityLambda(damage_, reload_, angle_, padding_, maxHeal_) {
 	});
 };
 
+/* Used by swim ability */
+const swimStatus = extend(StatusEffect, "status-swim", {
+	color: Color.valueOf("7699ff"),
+	
+	update(skat, time) {
+		this.super$update(skat, time);
+		
+		let floor = skat.floorOn();
+		let multi = Math.ceil(time + Time.delta) / 20; //jfjfjdjdjrijrnfjdisiwksjksskskkeieekdkddiididiekekdiisjwiaiOwoqqkkaskeo
+		if (multi < 1) return;
+		skat.speedMultiplier *= (floor.isDeep() ? multi * multi : multi) / floor.speedMultiplier;
+	}
+});
 /*Skat swim ability, increases swim speed when travelling on water*/
-function SkatSwimAbilityLambda(multiplier_) {
+function SkatSwimAbilityLambda(multi) {
 	return extend(Ability, {
-		multiplier: multiplier_,
-		
-		isSwimming: false,
-		
 		update(skat) {
-			let tile = Vars.world.tile(skat.x / 8, skat.y / 8);
-			if (tile != null) {
-				let floor = tile.floor();
-				this.isSwimming = floor.liquidDrop == Liquids.water;
-				
-				if (this.isSwimming) {
-					skat.speedMultiplier *= (floor.isDeep() ? this.multiplier * this.multiplier : this.multiplier) / floor.speedMultiplier;
-				}
+			if (skat.floorOn().liquidDrop == Liquids.water) {
+				skat.apply(swimStatus, multi * 20); //i hate this idea too but I'MFJDJJEDIFKRKRKDIIFIOOODO a aaaaaaaaaa pls delete rhino js aaaaaaaaaaaaaaaaaaaa
 			}
 		},
 		
 		localized() {
-			return getBundle("swimAbility") 
-				   + ": [grey]" + this.multiplier 
-				   + "[]x "     + getBundle("stat.speed-on-water") 
-				   + ", [grey]" + (this.multiplier * this.multiplier).toFixed(2)
-				   + "[]x "     + getBundle("stat.speed-on-deep-water");
+			return getBundle("swimAbility")
+				+ ": [grey]" + this.multiplier 
+				+ "[]x "     + getBundle("stat.speed-on-water") 
+				+ ", [grey]" + (this.multiplier * this.multiplier).toFixed(2)
+				+ "[]x "     + getBundle("stat.speed-on-deep-water");
 		}
 	});
 }
