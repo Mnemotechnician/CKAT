@@ -98,9 +98,9 @@ function SkatSwimAbilityLambda(multi) {
 		
 		localized() {
 			return getBundle("swimAbility")
-				+ ": [grey]" + this.multiplier 
+				+ ": [grey]" + multi 
 				+ "[]x "     + getBundle("stat.speed-on-water") 
-				+ ", [grey]" + (this.multiplier * this.multiplier).toFixed(2)
+				+ ", [grey]" + (multi * multi).toFixed(2)
 				+ "[]x "     + getBundle("stat.speed-on-deep-water");
 		}
 	});
