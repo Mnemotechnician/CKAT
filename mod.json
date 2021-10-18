@@ -4,4 +4,4 @@ displayName: "скат"
 author: "Мнемотехник"
 minGameVersion: "133"
 //!!! MUST NEVER BE LOWER THAN THE PREVIOUS VERSION !!!
-version: "1.61"
+version: "1.62"

@@ -17,7 +17,7 @@ Events.on(ClientLoadEvent, () => {
 				if (!Vars.headless) {
 					let dialog = new BaseDialog("update");
 					dialog.cont.add("@ckat-stingray.update").row();
-					dialog.cont.add(Core.bundle.format("ckat.stingray.version", mod.meta.version, latest)).padBottom(60).row();
+					dialog.cont.add(Core.bundle.format("ckat-stingray.version", mod.meta.version, latest)).padBottom(60).row();
 					dialog.cont.add("@ckat-stingray.update-tip").padBottom(30).row();
 					dialog.cont.button("@ckat-stingray.dismiss", () => dialog.hide()).size(200, 50);
 					dialog.show();
