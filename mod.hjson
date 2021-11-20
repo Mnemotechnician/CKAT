@@ -1,0 +1,8 @@
+name: "ckat-stingray"
+description: "[royal]Adds a unique скат unit branch.[]\n\nNow in [royal]Kotlin[]!"
+displayName: "Скат [kotlin]"
+author: "Мнемотехник"
+minGameVersion: "133"
+version: "2.0"
+
+main: "stingray.StingrayMod"
