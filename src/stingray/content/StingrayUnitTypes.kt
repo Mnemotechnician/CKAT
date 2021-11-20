@@ -142,7 +142,7 @@ open class StingrayUnitTypes : ContentList {
 						super.update(bullet);
 						
 						Units.nearbyEnemies(bullet.team, bullet.x, bullet.y, suckRadius) {
-							val power: Float = power / Math.cbrt(bullet.dst2(it) * it.hitSize).toFloat() * bullet.fout();
+							val power = power / Math.cbrt((bullet.dst2(it) * it.hitSize).toDouble()).toFloat() * bullet.fout();
 							val angle = it.angleTo(bullet); 
 							
 							it.vel.x += Angles.trnsx(angle, power * Time.delta);
