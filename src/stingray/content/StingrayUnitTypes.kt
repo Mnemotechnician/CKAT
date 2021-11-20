@@ -1,12 +1,17 @@
 package stingray.content;
 
 import arc.*;
+import arc.util.*;
 import arc.math.*;
+import arc.func.*;
 import arc.struct.*;
 import arc.graphics.g2d.*;
 import mindustry.*;
+import mindustry.gen.*;
 import mindustry.type.*;
 import mindustry.ctype.*;
+import mindustry.content.*;
+import mindustry.entities.*;
 
 import stingray.*;
 import stingray.content.*;
@@ -23,21 +28,21 @@ open class StingrayUnitTypes : ContentList {
 			hitSize = 27f;
 			canDrown = false;
 			health = 400f;
-			buildSpeed = 0;
-			armor = 0;
+			buildSpeed = 0f;
+			armor = 0f;
 			
-			legLength = 0;
+			legLength = 0f;
 			legCount = 0;
-			mechStride = 0;
-			mechStepShake = 0;
+			mechStride = 0f;
+			mechStepShake = 0f;
 			
 			immunities = ObjectSet.with(StatusEffects.wet);
 		}
-		urotry.constructor = {StingrayUnit(Seq.with(
+		urotry.constructor = Prov {StingrayUnit(Seq.with(
 			BiteBehavior(25f, 60f / 3f, 270f, 10f, 30f),
 			SwimBehavior(1.5f)
 		))};
-		urotry.defaultController = StingrayAI();
+		urotry.defaultController = Prov { StingrayAI() };
 		
 		mylio = object : UnitType("mylio") {}.apply {
 			speed = 0.5f;
@@ -45,44 +50,44 @@ open class StingrayUnitTypes : ContentList {
 			
 			canDrown = false;
 			health = 650f;
-			buildSpeed = 0;
-			armor = 8;
+			buildSpeed = 0f;
+			armor = 8f;
 			
-			legLength = 0;
+			legLength = 0f;
 			legCount = 0;
-			mechStride = 0;
-			mechStepShake = 0;
+			mechStride = 0f;
+			mechStepShake = 0f;
 			
 			immunities = ObjectSet.with(StatusEffects.wet);
 		}
-		mylio.constructor = {StingrayUnit(Seq.with(
+		mylio.constructor = Prov { StingrayUnit(Seq.with(
 			BiteBehavior(50f, 60f / 4f, 30f, 40f, 50f),
 			SwimBehavior(2.2f),
 			DashBehavior(500f, 60f * 10f, 30f, 8 * 30f)
-		))};
-		mylio.defaultController = StingrayAI();
+		)) };
+		mylio.defaultController = Prov { StingrayAI() };
 		
 		undulate = object : UnitType("undulate") {}.apply {
-			speed = 1.2f,
+			speed = 1.2f;
 			hitSize = 64f;
 		
 			canDrown = false;
 			health = 1300f;
-			buildSpeed = 0;
-			armor = 12;
+			buildSpeed = 0f;
+			armor = 12f;
 			
-			legLength = 0;
+			legLength = 0f;
 			legCount = 0;
-			mechStride = 0;
-			mechStepShake = 0;
+			mechStride = 0f;
+			mechStepShake = 0f;
 			
 			immunities = ObjectSet.with(StatusEffects.wet); 
 		}
-		undulate.constructor = {StingrayUnit(Seq.with(
+		undulate.constructor = Prov { StingrayUnit(Seq.with(
 			BiteBehavior(28f, 60 / 8f, 95f, 32f, 120f),
 			SwimBehavior(1.35f)	
-		))};
-		undulate.defaultController = StingrayAI();
+		)) };
+		undulate.defaultController = Prov { StingrayAI() };
 			
 			
 		dasya = object : UnitType("dasya") {}.apply {
@@ -92,13 +97,13 @@ open class StingrayUnitTypes : ContentList {
 			canBoost = false;
 			canDrown = false;
 			health = 9100f;
-			buildSpeed = 0;
-			armor = 24;
+			buildSpeed = 0f;
+			armor = 24f;
 			
-			legLength = 0;
+			legLength = 0f;
 			legCount = 0;
-			mechStride = 0;
-			mechStepShake = 0;
+			mechStride = 0f;
+			mechStepShake = 0f;
 			
 			immunities = ObjectSet.with(StatusEffects.wet, StatusEffects.freezing);
 			
@@ -107,13 +112,14 @@ open class StingrayUnitTypes : ContentList {
 				x = 0f;
 				y = 32f;
 				reload = 90f;
-				recoil = 8;
-				shake = 1
+				recoil = 8f;
+				shake = 1f;
 				ejectEffect = StingrayFx.hurricaneSpawn;
 				
 				bullet = object : BulletType() {
 					init {
-						collidesAir = collidesGround = false;
+						collidesAir = false;
+						collidesGround = false;
 						collideTerrain = true;
 						lifetime = 400f;
 						homingPower = 0.02f;
@@ -158,12 +164,12 @@ open class StingrayUnitTypes : ContentList {
 				}
 			});
 		}
-		dasya.constructor = {StingrayUnit(Seq.with(
+		dasya.constructor = Prov { StingrayUnit(Seq.with(
 			BiteBehavior(100f, 60 / 5f, 140f, 32f, 350f),
 			SwimBehavior(1.3f),
 			DashBehavior(2300f, 60 * 15f, 40f, 8 * 40f)
-		))};
-		dasya.defaultController = StingrayAI();
+		)) };
+		dasya.defaultController = Prov { StingrayAI() };
 	}
 
 	//what the hell

@@ -4,7 +4,7 @@ import arc.struct.*;
 import mindustry.gen.*;
 import stingray.entities.*;
 
-open class StingrayUnit(var behavior: Seq<BehaviorPattern>) : mindustry.gen.Unit() {
+open class StingrayUnit(var behavior: Seq<BehaviorPattern>) : mindustry.gen.MechUnit() {
 	
 	override open fun update() {
 		behavior.each {

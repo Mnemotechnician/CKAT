@@ -24,8 +24,8 @@ open class StingrayFx : ContentList {
 		
 		hurricaneSpawn = Effect(10f) {
 			val size = 20 * it.fslope();
-			val ox = Angles.trnsx(it.rotation, 20);
-			val oy = Angles.trnsy(it.rotation, 20);
+			val ox = Angles.trnsx(it.rotation, 20f);
+			val oy = Angles.trnsy(it.rotation, 20f);
 			
 			Draw.color(Pal.spore);
 			Draw.alpha(it.fout() * 4f);
@@ -34,8 +34,8 @@ open class StingrayFx : ContentList {
 			Lines.lineAngle(it.x - ox, it.y - oy, it.rotation, size);
 			Lines.lineAngle(it.x - ox, it.y - oy, it.rotation + 15f, size);
 			
-			if (it.data() is Team) {
-				Drawf.light(it.data(), it.x, it.y, 16f, Pal.reactorPurple, 0.5f);
+			if (it.`data`() is Team) {
+				Drawf.light(it.`data`(), it.x, it.y, 16f, Pal.reactorPurple, 0.5f);
 			} else {
 				Drawf.light(it.x, it.y, 16f, Pal.reactorPurple, 0.5f);
 			}

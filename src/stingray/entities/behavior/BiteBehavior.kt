@@ -1,6 +1,7 @@
 package stingray.entities.behavior;
 
 import arc.util.*;
+import arc.math.*;
 import mindustry.gen.*;
 import mindustry.content.*;
 import mindustry.entities.*;
@@ -14,13 +15,15 @@ open class BiteBehavior(var damage: Float, var reload: Float, var angleMax: Floa
 	val effect = Fx.generate;
 	
 	override open fun apply(parent: mindustry.gen.Unit) {
-		if ((reloadTimer += Time.delta) < reload) return;
+		reloadTimer += Time.delta;
+		if (reloadTimer < reload) return;
 		
-		while ((reloadTimer -= reload) >= 0f) {
+		while (reloadTimer >= 0f) {
+			reloadTimer -= reload;
 			this.healed = 0f;
 			
 			Units.nearbyEnemies(parent.team, parent.x, parent.y, parent.hitSize / 2f + padding) {
-				attackIfInfront(parent, it);
+				tryAttack(parent, it);
 			};
 			
 			Units.nearbyBuildings(parent.x, parent.y, parent.hitSize / 2f + padding) {
@@ -44,7 +47,7 @@ open class BiteBehavior(var damage: Float, var reload: Float, var angleMax: Floa
 				healed += damage / 5f;
 			}
 			
-			if (Mathf.chance(0.07f) && enemy instanceof mindustry.gen.Unit) enemy.apply(StatusEffects.unmoving, 100f);
+			if (Mathf.chance(0.07f) && enemy is mindustry.gen.Unit) enemy.`apply`(StatusEffects.unmoving, 100f);
 		}
 	}
 	

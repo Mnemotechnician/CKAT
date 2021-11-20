@@ -10,13 +10,13 @@ import stingray.content.*;
 open class StingrayTechTree : ContentList {
 	
 	override open fun load() {
-		unitTech(StingrayUnitTypes.Urotry, UnitTypes.dagger);
-		unitTech(StingrayUnitTypes.Mylio, StingrayUnitTypes.Urotry);
-		unitTech(StingrayUnitTypes.Undulate, StingrayUnitTypes.Mylio);
-		unitTech(StingrayUnitTypes.Dasya, StingrayUnitTypes.Undulate);
+		unitTech(StingrayUnitTypes.urotry, UnitTypes.dagger);
+		unitTech(StingrayUnitTypes.mylio, StingrayUnitTypes.urotry);
+		unitTech(StingrayUnitTypes.undulate, StingrayUnitTypes.mylio);
+		unitTech(StingrayUnitTypes.dasya, StingrayUnitTypes.undulate);
 	}
 	
-	inline open fun unitTech(unit: UnitType, parent: UnitType) {
+	inline fun unitTech(unit: UnitType, parent: UnitType) {
 		TechTree.TechNode(TechTree.get(parent), unit, unit.researchRequirements());
 	};
 	
