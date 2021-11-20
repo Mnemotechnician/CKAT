@@ -12,6 +12,7 @@ import mindustry.type.*;
 import mindustry.ctype.*;
 import mindustry.content.*;
 import mindustry.entities.*;
+import mindustry.entities.bullet.*;
 
 import stingray.*;
 import stingray.content.*;
@@ -158,7 +159,7 @@ open class StingrayUnitTypes : ContentList {
 					}
 					
 					//no idea, this is present in the original code
-					override fun continuousDamage() {
+					override fun continuousDamage(): Float {
 						return power * 0.01f * 60f;
 					}
 				}

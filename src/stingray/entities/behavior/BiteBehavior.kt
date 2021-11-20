@@ -47,7 +47,7 @@ open class BiteBehavior(var damage: Float, var reload: Float, var angleMax: Floa
 				healed += damage / 5f;
 			}
 			
-			if (Mathf.chance(0.07f) && enemy is mindustry.gen.Unit) enemy.`apply`(StatusEffects.unmoving, 100f);
+			if (Mathf.chance(0.07) && enemy is mindustry.gen.Unit) enemy.`apply`(StatusEffects.unmoving, 100f);
 		}
 	}
 	

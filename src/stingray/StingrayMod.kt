@@ -13,8 +13,8 @@ open class StingrayMod : Mod() {
 	}
 
 	override open fun loadContent() {
-		StingrayUnitTypes.load();
-		StingrayTechTree.load();
-		StingrayFx.load();
+		StingrayUnitTypes().load();
+		StingrayTechTree().load();
+		StingrayFx().load();
 	}
 }

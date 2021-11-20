@@ -34,11 +34,7 @@ open class StingrayFx : ContentList {
 			Lines.lineAngle(it.x - ox, it.y - oy, it.rotation, size);
 			Lines.lineAngle(it.x - ox, it.y - oy, it.rotation + 15f, size);
 			
-			if (it.`data`() is Team) {
-				Drawf.light(it.`data`(), it.x, it.y, 16f, Pal.reactorPurple, 0.5f);
-			} else {
-				Drawf.light(it.x, it.y, 16f, Pal.reactorPurple, 0.5f);
-			}
+			Drawf.light(it.x, it.y, 16f, Pal.reactorPurple, 0.5f);
 		};
 	}
 	
