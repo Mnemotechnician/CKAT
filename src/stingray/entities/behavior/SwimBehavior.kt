@@ -5,7 +5,7 @@ import stingray.entities.*;
 
 open class SwimBehavior(var multiplier: Float) : BehaviorPattern() {
 	
-	override fun apply(parent: mindustry.gen.Unit) {
+	override open fun apply(parent: mindustry.gen.Unit) {
 		val floor = parent.floorOn();
 		
 		if (floor.liquidDrop == Liquids.water) {

@@ -14,37 +14,37 @@ import stingray.entities.*;
 import stingray.entities.behavior.*;
 import stingray.ai.types.*;
 
-open class StingrayUnits : ContentList {
+open class StingrayUnitTypes : ContentList {
 
-	override fun load() {
-		urotry = object : UnitType() {}.with {
-			speed = 1.1;
+	override open fun load() {
+		urotry = object : UnitType("urotry") {}.apply {
+			speed = 1.1f;
 			
-			hitSize = 27;
+			hitSize = 27f;
 			canDrown = false;
-			health = 400;
+			health = 400f;
 			buildSpeed = 0;
 			armor = 0;
-				
+			
 			legLength = 0;
 			legCount = 0;
 			mechStride = 0;
 			mechStepShake = 0;
 			
-			immunities: ObjectSet.with(StatusEffects.wet);
+			immunities = ObjectSet.with(StatusEffects.wet);
 		}
 		urotry.constructor = {StingrayUnit(Seq.with(
-			BiteBehavior(25, 60 / 3, 270, 10, 30),
+			BiteBehavior(25f, 60f / 3f, 270f, 10f, 30f),
 			SwimBehavior(1.5f)
 		))};
-		urotry.defaultController = StingrayAI;
+		urotry.defaultController = StingrayAI();
 		
-		mylio = object : UnitType() {}.with {
-			speed = 0.5;
-			hitSize = 37;
+		mylio = object : UnitType("mylio") {}.apply {
+			speed = 0.5f;
+			hitSize = 37f;
 			
 			canDrown = false;
-			health = 650;
+			health = 650f;
 			buildSpeed = 0;
 			armor = 8;
 			
@@ -53,21 +53,21 @@ open class StingrayUnits : ContentList {
 			mechStride = 0;
 			mechStepShake = 0;
 			
-			immunities: ObjectSet.with(StatusEffects.wet);
+			immunities = ObjectSet.with(StatusEffects.wet);
 		}
 		mylio.constructor = {StingrayUnit(Seq.with(
-			BiteBehavior(50, 60 / 4, 30, 40, 50),
+			BiteBehavior(50f, 60f / 4f, 30f, 40f, 50f),
 			SwimBehavior(2.2f),
-			DashBehavior(500, 60 * 10, 30, 8 * 30)
+			DashBehavior(500f, 60f * 10f, 30f, 8 * 30f)
 		))};
-		mylio.defaultController = StingrayAI;
+		mylio.defaultController = StingrayAI();
 		
-		undulate = object : UnitType() {}.with {
-			speed: 1.2,
-			hitSize = 64;
+		undulate = object : UnitType("undulate") {}.apply {
+			speed = 1.2f,
+			hitSize = 64f;
 		
 			canDrown = false;
-			health = 1300;
+			health = 1300f;
 			buildSpeed = 0;
 			armor = 12;
 			
@@ -79,19 +79,19 @@ open class StingrayUnits : ContentList {
 			immunities = ObjectSet.with(StatusEffects.wet); 
 		}
 		undulate.constructor = {StingrayUnit(Seq.with(
-			BiteBehavior(28, 60 / 8, 95, 32, 120),
-			SwimBehavior(1.35)	
+			BiteBehavior(28f, 60 / 8f, 95f, 32f, 120f),
+			SwimBehavior(1.35f)	
 		))};
-		undulate.defaultController = StingrayAI;
+		undulate.defaultController = StingrayAI();
 			
 			
-		dasya = object : UnitType() {}.with {
-			speed = 0.9;
+		dasya = object : UnitType("dasya") {}.apply {
+			speed = 0.9f;
 			
-			hitSize = 96;
+			hitSize = 96f;
 			canBoost = false;
 			canDrown = false;
-			health = 9100;
+			health = 9100f;
 			buildSpeed = 0;
 			armor = 24;
 			
@@ -102,11 +102,11 @@ open class StingrayUnits : ContentList {
 			
 			immunities = ObjectSet.with(StatusEffects.wet, StatusEffects.freezing);
 			
-			weapons = Seq.with(object : Weapon("hurricane-generator") {}.with {
+			weapons = Seq.with(object : Weapon("hurricane-generator") {}.apply {
 				top = true;
-				x = 0;
-				y = 32;
-				reload = 90;
+				x = 0f;
+				y = 32f;
+				reload = 90f;
 				recoil = 8;
 				shake = 1
 				ejectEffect = StingrayFx.hurricaneSpawn;
@@ -115,16 +115,16 @@ open class StingrayUnits : ContentList {
 					init {
 						collidesAir = collidesGround = false;
 						collideTerrain = true;
-						lifetime = 400;
-						homingPower = 0.02;
+						lifetime = 400f;
+						homingPower = 0.02f;
 						shootEffect = Fx.none;
 						despawnEffect = Fx.none;
 					}
 					
 					lateinit var region: TextureRegion;
-					val suckRadius: Float = 90;
-					val power: Float = 15;
-					val visualSize: Float = 96;
+					val suckRadius: Float = 90f;
+					val power: Float = 15f;
+					val visualSize: Float = 96f;
 					
 					
 					override fun load() {
@@ -141,37 +141,37 @@ open class StingrayUnits : ContentList {
 							it.vel.x += Angles.trnsx(angle, power * Time.delta);
 							it.vel.y += Angles.trnsy(angle, power * Time.delta);
 							
-							it.damage(power * 0.01 * Time.delta);
-						});
+							it.damage(power * 0.01f * Time.delta);
+						};
 					}
 					
 					override fun draw(bullet: Bullet) {
 						val progress = Interp.sineOut.apply(bullet.fout());
-						Draw.alpha((b.fin() - 0.0125) * 40); /*5 + 10 ticks until full visibility*/
+						Draw.alpha((b.fin() - 0.0125f) * 40f); /*5 + 10 ticks until full visibility*/
 						Draw.rect(region, bullet.x, bullet.y, visualSize * progress, visualSize * progress, progress * 2880);
 					}
 					
 					//no idea, this is present in the original code
 					override fun continuousDamage() {
-						return this.power * 0.01 * 60;
+						return power * 0.01f * 60f;
 					}
 				}
 			});
 		}
 		dasya.constructor = {StingrayUnit(Seq.with(
-			BiteBehavior(100, 60 / 5f, 140, 32, 350),
+			BiteBehavior(100f, 60 / 5f, 140f, 32f, 350f),
 			SwimBehavior(1.3f),
-			DashBehavior(2300, 60 * 15, 40, 8 * 40)
+			DashBehavior(2300f, 60 * 15f, 40f, 8 * 40f)
 		))};
-		dasya.defaultController = StingrayAI;
+		dasya.defaultController = StingrayAI();
 	}
 
 	//what the hell
 	companion object {
-		lateinit val urotry: UnitType;
-		lateinit val mylio: UnitType;
-		lateinit val undulate: UnitType;
-		lateinit val dasya: UnitType;
+		lateinit var urotry: UnitType;
+		lateinit var mylio: UnitType;
+		lateinit var undulate: UnitType;
+		lateinit var dasya: UnitType;
 	}
 	
 }

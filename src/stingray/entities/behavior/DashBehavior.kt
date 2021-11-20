@@ -14,16 +14,16 @@ import stingray.entities.*;
 open class BiteBehavior(var damage: Float, var reload: Float, var angleMax: Float, var range: Float) : BehaviorPattern() {
 	
 	var target: mindustry.gen.Unit? = null;
-	var dashCharge: Float = 0;
-	var dashTimer: Float = 0;
-	var effectTimer: Float = 0;
+	var dashCharge: Float = 0f;
+	var dashTimer: Float = 0f;
+	var effectTimer: Float = 0f;
 	
-	val speed: Float = 2;
+	var speed: Float = 2f;
 	
-	override fun apply(parent: mindustry.gen.Unit) {
-		if (dashTimer <= 0) {
+	override open fun apply(parent: mindustry.gen.Unit) {
+		if (dashTimer <= 0f) {
 			if ((dashCharge += Time.delta) >= reload) {
-				dashCharge = 0;
+				dashCharge = 0f;
 				dashTimer = range / speed / 60f;
 			}
 		} else {
@@ -31,7 +31,7 @@ open class BiteBehavior(var damage: Float, var reload: Float, var angleMax: Floa
 			target = Units.closestTarget(parent.team, parent.x, parent.y, range + parent.hitSize) {
 				val angle = parent.angleTo(it.x, it.y);
 				val angleDist = Math.abs(angle - parent.rotation);
-				return (angleDist < angleMax || 360 - angleDist < angleMax) && it.maxHealth > damage / 4;
+				return (angleDist < angleMax || 360f - angleDist < angleMax) && it.maxHealth > damage / 4f;
 			};
 			
 			if (target == null) return;
@@ -44,7 +44,7 @@ open class BiteBehavior(var damage: Float, var reload: Float, var angleMax: Floa
 				target.vel.y += Angles.trnsy(angle, pushForce);
 				target.damage(damage);
 				
-				dashTimer = 0;
+				dashTimer = 0f;
 			} else {
 				parent.vel.x += Angles.trnsx(angle, speed * Time.delta);
 				parent.vel.y += Angles.trnsy(angle, speed * Time.delta);
@@ -53,14 +53,15 @@ open class BiteBehavior(var damage: Float, var reload: Float, var angleMax: Floa
 	}
 	
 	override fun draw(parent: mindustry.gen.Unit) {
+		val target = this.target; //what the fuck
 		if (target == null || Units.invalidateTarget(target, parent.team, parent.x, parent.y)) return;
 		
 		Draw.color(Pal.accent);
 		//idk what all these magic values mean and and this point I don't want to know
-		Lines.circle(target.x, target.y, (target.hitSize * 1.5) / Math.min(parent.dst(target) / 80, 1.5));
+		Lines.circle(target.x, target.y, (target.hitSize * 1.5f) / Math.min(parent.dst(target) / 80f, 1.5f));
 		
-		if ((effectTimer += Time.delta) > 8) {
-			effectTimer = 0;
+		if ((effectTimer += Time.delta) > 8f) {
+			effectTimer = 0f;
 			StingrayFx.moveArrow.at(parent.x, parent.y, parent.rotation);
 		}
 	}
