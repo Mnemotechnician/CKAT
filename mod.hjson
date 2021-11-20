@@ -1,3 +1,6 @@
+#VERSION 2.0
+#REPO "MHeMoTexHuK/CKAT"
+
 name: "ckat-stingray"
 description: "[royal]Adds a unique скат unit branch.[]\n\nNow in [royal]Kotlin[]!"
 displayName: "Скат [kotlin]"
