@@ -30,7 +30,7 @@ open class DashBehavior(var damage: Float, var reload: Float, var angleMax: Floa
 			}
 		} else {
 			//actual dash process
-			var angle: Float = 0;
+			var angle: Float = 0f;
 			target = Units.closestEnemy(parent.team, parent.x, parent.y, range + parent.hitSize) {
 				angle = parent.angleTo(it.x, it.y);
 				val angleDist = Math.abs(angle - parent.rotation);

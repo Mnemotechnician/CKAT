@@ -141,8 +141,8 @@ open class StingrayUnitTypes : ContentList {
 					override fun update(bullet: Bullet) {
 						super.update(bullet);
 						
-						Units.nearbyEnemies(bullet.owner.team, bullet.x, bullet.y, suckRadius) {
-							val power = (power / Math.cbrt(bullet.dst2(it) * it.hitSize) * bullet.fout()) as Float;
+						Units.nearbyEnemies(bullet.team, bullet.x, bullet.y, suckRadius) {
+							val power = (power / Math.cbrt(bullet.dst2(it) * it.hitSize) * bullet.fout()).toFloat();
 							val angle = it.angleTo(bullet); 
 							
 							it.vel.x += Angles.trnsx(angle, power * Time.delta);
@@ -154,7 +154,7 @@ open class StingrayUnitTypes : ContentList {
 					
 					override fun draw(bullet: Bullet) {
 						val progress = Interp.sineOut.apply(bullet.fout());
-						Draw.alpha((b.fin() - 0.0125f) * 40f); /*5 + 10 ticks until full visibility*/
+						Draw.alpha((bullet.fin() - 0.0125f) * 40f); /*5 + 10 ticks until full visibility*/
 						Draw.rect(region, bullet.x, bullet.y, visualSize * progress, visualSize * progress, progress * 2880);
 					}
 					
