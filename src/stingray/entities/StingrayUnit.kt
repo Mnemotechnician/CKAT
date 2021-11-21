@@ -25,8 +25,10 @@ open class StingrayUnit(var behavior: Seq<BehaviorPattern>) : mindustry.gen.Mech
 	override open fun write(writes: Writes) {
 		super.write(writes);
 		Log.info("writing $this")
+		writes.i(behavior.size);
 		behavior.each {
 			writes.i(it.version());
+			writes.str(it.name);
 			it.write(writes);
 			Log.info("writing $it: revision ${it.version()}")
 		};
@@ -35,10 +37,24 @@ open class StingrayUnit(var behavior: Seq<BehaviorPattern>) : mindustry.gen.Mech
 	override open fun read(reads: Reads) {
 		super.read(reads);
 		Log.info("reading $this");
-		behavior.each {
+		val size = reads.i();
+		for (num in 0 until size) {
 			val version = reads.i();
-			it.read(reads, version);
-			Log.info("reading $it: revision $version")
+			val name = reads.str();
+			val ptype = BehaviorPattern.map.get(name);
+			if (type == null) {
+				Log.warn("Unknown behavior: $name, trying to skip");
+				continue;
+			}
+			
+			val instance = ptype.createInstance();
+			if (instance !is BehaviorPattern) {
+				Log.warn("${ptype.getCanonicalName()} is not a behavior pattern and cannot be read, trying to skip");
+				continue;
+			}
+			
+			instance.read(reads, version);
+			Log.info("reading $it: revision $version");
 		};
 	}
 	
