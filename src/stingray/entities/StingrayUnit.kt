@@ -1,6 +1,7 @@
 package stingray.entities;
 
 import arc.struct.*;
+import arc.util.*;
 import arc.util.io.*;
 import mindustry.gen.*;
 import stingray.entities.*;
@@ -17,7 +18,7 @@ open class StingrayUnit(var behavior: Seq<BehaviorPattern>) : mindustry.gen.Mech
 	override open fun draw() {
 		super.draw();
 		behavior.each {
-			it.apply(this);
+			it.draw(this);
 		}
 	}
 	
@@ -26,6 +27,7 @@ open class StingrayUnit(var behavior: Seq<BehaviorPattern>) : mindustry.gen.Mech
 		behavior.each {
 			writes.i(it.version());
 			it.write(writes);
+			Log.info("writing $it: revision ${it.version()}")
 		};
 	}
 	
@@ -34,6 +36,7 @@ open class StingrayUnit(var behavior: Seq<BehaviorPattern>) : mindustry.gen.Mech
 		behavior.each {
 			val version = reads.i();
 			it.read(reads, version);
+			Log.info("reading $it: revision $version")
 		};
 	}
 	
