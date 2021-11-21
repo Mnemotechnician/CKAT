@@ -3,7 +3,7 @@ package stingray.entities;
 import arc.scene.ui.layout.*;
 import mindustry.gen.*;
 
-/** Similar to Ability, except it's handled by the Unit, one instance of pattern is created per stingray unit and it's stats are displayed */
+/** Similar to Ability, except that it's handled by the Unit object, one instance of pattern is created per unit and it's stats can displayed in the database */
 abstract open class BehaviorPattern(val name: String) {
 	
 	open fun apply(parent: mindustry.gen.Unit) {

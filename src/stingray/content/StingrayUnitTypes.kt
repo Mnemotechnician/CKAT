@@ -41,7 +41,7 @@ open class StingrayUnitTypes : ContentList {
 			immunities = ObjectSet.with(StatusEffects.wet);
 		}
 		urotry.constructor = Prov {StingrayUnit(Seq.with(
-			BiteBehavior(25f, 60f / 3f, 135f, 10f, 30f),
+			BiteBehavior(25f, 60f / 3f, 135f, 10f, 10f),
 			SwimBehavior(1.5f)
 		))};
 		urotry.defaultController = Prov { StingrayAI() };
@@ -63,7 +63,7 @@ open class StingrayUnitTypes : ContentList {
 			immunities = ObjectSet.with(StatusEffects.wet);
 		}
 		mylio.constructor = Prov { StingrayUnit(Seq.with(
-			BiteBehavior(50f, 60f / 4f, 15f, 40f, 50f),
+			BiteBehavior(50f, 60f / 4f, 15f, 40f, 13f),
 			SwimBehavior(2.2f),
 			DashBehavior(500f, 10f * 60f, 15f, 8 * 30f)
 		)) };
@@ -86,7 +86,7 @@ open class StingrayUnitTypes : ContentList {
 			immunities = ObjectSet.with(StatusEffects.wet); 
 		}
 		undulate.constructor = Prov { StingrayUnit(Seq.with(
-			BiteBehavior(38f, 60 / 8f, 47f, 32f, 120f),
+			BiteBehavior(38f, 60 / 8f, 47f, 32f, 15f),
 			SwimBehavior(1.35f)	
 		)) };
 		undulate.defaultController = Prov { StingrayAI() };
@@ -167,7 +167,7 @@ open class StingrayUnitTypes : ContentList {
 			});
 		}
 		dasya.constructor = Prov { StingrayUnit(Seq.with(
-			BiteBehavior(75f, 60 / 5f, 70f, 32f, 320f),
+			BiteBehavior(75f, 60 / 5f, 70f, 32f, 60f),
 			SwimBehavior(1.3f),
 			DashBehavior(2300f, 15f * 60f, 20f, 8 * 40f)
 		)) };
