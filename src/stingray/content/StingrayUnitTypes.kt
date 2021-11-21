@@ -64,7 +64,7 @@ open class StingrayUnitTypes : ContentList {
 		mylio.constructor = Prov { StingrayUnit(Seq.with(
 			BiteBehavior(50f, 60f / 4f, 15f, 40f, 50f),
 			SwimBehavior(2.2f),
-			DashBehavior(500f, 10f, 15f, 8 * 30f)
+			DashBehavior(500f, 10f * 60f, 15f, 8 * 30f)
 		)) };
 		mylio.defaultController = Prov { StingrayAI() };
 		
@@ -168,7 +168,7 @@ open class StingrayUnitTypes : ContentList {
 		dasya.constructor = Prov { StingrayUnit(Seq.with(
 			BiteBehavior(75f, 60 / 5f, 70f, 32f, 320f),
 			SwimBehavior(1.3f),
-			DashBehavior(2300f, 15f, 20f, 8 * 40f)
+			DashBehavior(2300f, 15f * 60f, 20f, 8 * 40f)
 		)) };
 		dasya.defaultController = Prov { StingrayAI() };
 	}

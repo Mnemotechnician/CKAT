@@ -26,7 +26,7 @@ open class DashBehavior(var damage: Float, var reload: Float, var angleMax: Floa
 			dashCharge += Time.delta
 			if (dashCharge >= reload) {
 				dashCharge = 0f;
-				dashTimer = range / speed / 60f;
+				dashTimer = range / speed;
 			}
 		} else {
 			//actual dash process
@@ -49,6 +49,7 @@ open class DashBehavior(var damage: Float, var reload: Float, var angleMax: Floa
 				target.damage(damage);
 				
 				dashTimer = 0f;
+				this.target = null;
 			} else {
 				parent.vel.x += Angles.trnsx(angle, speed * Time.delta);
 				parent.vel.y += Angles.trnsy(angle, speed * Time.delta);
