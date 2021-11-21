@@ -1,7 +1,9 @@
+#!VERSION 2.0
+#!REPO "MHeMoTexHuK/CKAT"
+
 name: "ckat-stingray"
 description: "[royal]Adds a unique скат unit branch.[]\n\nNow with extra js stuff!"
 displayName: "скат"
 author: "Мнемотехник"
 minGameVersion: "133"
-//!!! MUST NEVER BE LOWER THAN THE PREVIOUS VERSION !!!
 version: "1.64"
