@@ -166,7 +166,7 @@ open class StingrayUnitTypes : ContentList {
 			});
 		}
 		dasya.constructor = Prov { StingrayUnit(Seq.with(
-			BiteBehavior(100f, 60 / 5f, 70f, 32f, 350f),
+			BiteBehavior(75f, 60 / 5f, 70f, 32f, 320f),
 			SwimBehavior(1.3f),
 			DashBehavior(2300f, 15f, 20f, 8 * 40f)
 		)) };
