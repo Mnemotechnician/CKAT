@@ -2,7 +2,7 @@ package stingray.entities.behavior;
 
 import arc.util.*;
 import arc.math.*;
-imporr arc.scene.ui.layout.*;
+import arc.scene.ui.layout.*;
 import mindustry.gen.*;
 import mindustry.content.*;
 import mindustry.entities.*;
