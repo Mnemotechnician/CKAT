@@ -24,6 +24,7 @@ open class StingrayUnit(var behavior: Seq<BehaviorPattern>) : mindustry.gen.Mech
 	
 	override open fun write(writes: Writes) {
 		super.write(writes);
+		Log.write("writing $this")
 		behavior.each {
 			writes.i(it.version());
 			it.write(writes);
@@ -33,6 +34,7 @@ open class StingrayUnit(var behavior: Seq<BehaviorPattern>) : mindustry.gen.Mech
 	
 	override open fun read(reads: Reads) {
 		super.read(reads);
+		Log.info("reading $this");
 		behavior.each {
 			val version = reads.i();
 			it.read(reads, version);
