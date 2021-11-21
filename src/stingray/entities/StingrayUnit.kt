@@ -41,7 +41,7 @@ open class StingrayUnit(var behavior: Seq<BehaviorPattern>) : mindustry.gen.Mech
 		for (num in 0 until size) {
 			val version = reads.i();
 			val name = reads.str();
-			val ptype = BehaviorPattern.map.get(name);
+			val ptype = BehaviorPattern.patternMap.get(name);
 			if (type == null) {
 				Log.warn("Unknown behavior: $name, trying to skip");
 				continue;
@@ -53,8 +53,8 @@ open class StingrayUnit(var behavior: Seq<BehaviorPattern>) : mindustry.gen.Mech
 				continue;
 			}
 			
+			Log.info("reading $instance: revision $version");
 			instance.read(reads, version);
-			Log.info("reading $it: revision $version");
 		};
 	}
 	

@@ -39,7 +39,7 @@ abstract open class BehaviorPattern(val name: String) {
 	
 	companion object {
 		
-		val patternMap = ObjectMap<String, Class>(5);
+		val patternMap = ObjectMap<String, Class<BehaviorPattern>>(5);
 		
 	}
 	
