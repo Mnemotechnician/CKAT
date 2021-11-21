@@ -24,14 +24,9 @@ open class StingrayMod : Mod() {
 		StingrayTechTree().load();
 		
 		//Add construction plans, idk where to put it other than here
-		Blocks.navalFactory.plans.add(
-			new UnitFactory.UnitPlan(StringrayUnitTypes.Urotry, 60 * 30f, ItemStack.with(
-				Items.graphite, 20,
-				Items.silicon, 35,
-				Items.titanium, 10, 
-				Items.metaglass, 10
-			))
-		);
+		val cost = ItemStack.with(Items.graphite, 20, Items.silicon, 35, Items.titanium, 10, Items.metaglass, 10);
+		Blocks.navalFactory.plans.add(UnitFactory.UnitPlan(StringrayUnitTypes.Urotry, 60 * 30f, cost));
+		
 		Blocks.additiveReconstructor.addUpgrade(StingrayUnitTypes.Urotry, StringrayUnitTypes.Mylio);
 		Blocks.multiplicativeReconstructor.addUpgrade(StingrayUnitTypes.Mylio, StingrayUnitTypes.Undulate);
 		Blocks.exponentialReconstructor.addUpgrade(StingrayUnitTypes.Undulate, StingrayUnitTypes.Dasya);
