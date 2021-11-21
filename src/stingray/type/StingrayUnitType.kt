@@ -7,7 +7,7 @@ import mindustry.ui.*;
 import stingray.entities.*;
 
 /** Only used for custom stat display */
-class StingrayUnitType(name: String) : UnitType(name) {
+open class StingrayUnitType(name: String) : UnitType(name) {
 	
 	override fun setStats() {
 		super.setStats();
@@ -16,7 +16,7 @@ class StingrayUnitType(name: String) : UnitType(name) {
 		val example = create(null);
 		if (example !is StingrayUnit) return;
 		
-		stats.add(Stat.abilities) StatValue {
+		stats.add(Stat.abilities, StatValue {
 			it.table(Styles.black3) { table: Table ->
 				example.behavior.each { behavior: BehaviorPattern ->
 					table.table {
@@ -24,7 +24,7 @@ class StingrayUnitType(name: String) : UnitType(name) {
 					}.marginBottom(10).row();
 				}
 			}.growX();
-		};
+		});
 	}
 	
 }

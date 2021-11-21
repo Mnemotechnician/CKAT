@@ -156,7 +156,7 @@ open class StingrayUnitTypes : ContentList {
 					override fun draw(bullet: Bullet) {
 						val progress = Interp.sineOut.apply(bullet.fout());
 						Draw.alpha((bullet.fin() - 0.0125f) * 40f); /*5 + 10 ticks until full visibility*/
-						Draw.rect(region, bullet.x, bullet.y, visualSize * progress, visualSize * progress, Interp.sineIn.applu(progress) * 2880);
+						Draw.rect(region, bullet.x, bullet.y, visualSize * progress, visualSize * progress, Interp.sineIn.apply(progress) * 2880);
 					}
 					
 					//no idea, this is present in the original code

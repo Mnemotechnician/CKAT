@@ -23,13 +23,13 @@ open class SwimBehavior(var multiplier: Float) : BehaviorPattern("swim") {
 	override open fun display(table: Table) {
 		super.display(table);
 		
-		String speed = Core.bundle["ckat-stingray-speed"];
+		speed: String = Core.bundle["ckat-stingray-speed"];
 		table.table {
 			it.center();
 			it.add("@ckat-stingray.stat.swim-shallow").marginRight(5f);
 			it.add("@ckat-stingray.stat.swim-deep");
 			it.add("${multiplier}x $speed");
-			it.add("${multiplier * multipliee}x $speed");
+			it.add("${multiplier * multiplier}x $speed");
 		}.growY();
 	}
 	
