@@ -18,7 +18,7 @@ open class BiteBehavior(var damage: Float, var reload: Float, var angleMax: Floa
 		reloadTimer += Time.delta;
 		if (reloadTimer < reload) return;
 		
-		while (reloadTimer >= 0f) {
+		while (reloadTimer >= 0f) { //incase if Time.delta >= reload
 			reloadTimer -= reload;
 			this.healed = 0f;
 			
@@ -42,7 +42,7 @@ open class BiteBehavior(var damage: Float, var reload: Float, var angleMax: Floa
 			enemy.damage(damage);
 			effect.at(enemy.x, enemy.y, angle);
 			
-			if (healed < maxHeal) {
+			if (healed < (maxHeal / (1f / reload))) { //maxHeal is the target heal/second
 				parent.heal(Math.min(damage / 5f, Math.max(maxHeal - healed, 0f)));
 				healed += damage / 5f;
 			}

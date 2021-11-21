@@ -1,15 +1,18 @@
 package stingray;
 
-import arc.*
-import arc.util.*
-import mindustry.game.EventType.*
-import mindustry.mod.*
+import io.mnemotechnician.autoupdater.*;
+import arc.*;
+import arc.util.*;
+import mindustry.game.*;
+import mindustry.mod.*;
 import stingray.content.*;
 
 open class StingrayMod : Mod() {
 	
 	init {
-		
+		Events.on(EventType.ClientLoadEvent::class.java, {
+			Updater.checkUpdates(this);
+		});
 	}
 
 	override open fun loadContent() {
