@@ -19,7 +19,7 @@ open class StingrayUnitType(name: String) : UnitType(name) {
 		
 		stats.add(Stat.abilities, StatValue {
 			it.row();
-			it.table { table: Table ->
+			it.table(Styles.flatDown) { table: Table ->
 				table.center().left();
 				example.behavior.each { behavior: BehaviorPattern ->
 					behavior.display(table);
