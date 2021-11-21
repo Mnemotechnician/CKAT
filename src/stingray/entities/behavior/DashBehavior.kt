@@ -93,4 +93,18 @@ open class DashBehavior(var damage: Float, var reload: Float, var angleMax: Floa
 		}
 	}
 	
+	override open fun write(writes: Writes) {
+		super.write(writes);
+		writes.f(dashCharge);
+		writes.f(dashTimer);
+		writes.f(effectTimer);
+	}
+	
+	override open fun read(reads: Reads, revision: Int) {
+		super.read(reads, revision);
+		dashCharge = reads.f();
+		dashTimer = reads.f();
+		effectTimer = reads.f();
+	}
+	
 }

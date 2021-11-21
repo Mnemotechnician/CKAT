@@ -74,4 +74,14 @@ open class BiteBehavior(var damage: Float, var reload: Float, var angleMax: Floa
 		}
 	}
 	
+	override open fun write(writes: Writes) {
+		super.write(writes);
+		writes.f(reloadTimer);
+	}
+	
+	override open fun read(reads: Reads, revision: Int) {
+		super.read(reads, revision);
+		reloadTimer = reads.f();
+	}
+	
 }
