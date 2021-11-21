@@ -62,6 +62,7 @@ open class DashBehavior(var damage: Float, var reload: Float, var angleMax: Floa
 		if (target == null || Units.invalidateTarget(target, parent.team, parent.x, parent.y)) return;
 		
 		Draw.color(Pal.accent);
+		Draw.z(Layer.power);
 		//idk what all these magic values mean and and this point I don't want to know
 		Lines.circle(target.x, target.y, (target.hitSize * 1.5f) / Math.min(parent.dst(target) / 80f, 1.5f));
 		

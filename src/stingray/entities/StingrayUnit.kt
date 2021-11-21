@@ -7,10 +7,10 @@ import stingray.entities.*;
 open class StingrayUnit(var behavior: Seq<BehaviorPattern>) : mindustry.gen.MechUnit() {
 	
 	override open fun update() {
+		super.update();
 		behavior.each {
 			it.apply(this);
 		};
-		super.update();
 	}
 	
 	override open fun draw() {
