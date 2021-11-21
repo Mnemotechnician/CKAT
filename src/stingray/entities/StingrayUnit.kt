@@ -1,5 +1,6 @@
 package stingray.entities;
 
+import kotlin.reflect.*;
 import arc.struct.*;
 import arc.util.*;
 import arc.util.io.*;
