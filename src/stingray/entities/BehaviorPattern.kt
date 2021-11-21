@@ -15,7 +15,7 @@ abstract open class BehaviorPattern(val name: String) {
 	}
 	
 	open fun display(table: Table) {
-		table.add("@ckat-stingray.ability.$name").fillY().center().marginRight(20f);
+		table.add("@ckat-stingray.ability.$name").fillY().center().pad(5f).marginRight(15f);
 	}
 	
 }
