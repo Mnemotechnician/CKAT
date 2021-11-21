@@ -11,7 +11,7 @@ open class StingrayAI : AIController() {
 	//too much fun
 	override open fun updateMovement() {
 
-		val e = Units.closestTarget(unit.team, unit.x, unit.y, 160f, {true});
+		val e = Units.closestTarget(unit.team, unit.x, unit.y, 260f, {true});
 		if (e != null) {
 			target = e;
 			moveTo(e, 6f);

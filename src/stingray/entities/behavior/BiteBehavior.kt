@@ -7,7 +7,7 @@ import mindustry.content.*;
 import mindustry.entities.*;
 import stingray.entities.*;
 
-open class BiteBehavior(var damage: Float, var reload: Float, var angleMax: Float, var padding: Float, var maxHeal: Float) : BehaviorPattern() {
+open class BiteBehavior(var damage: Float, var reload: Float, var angleMax: Float, var padding: Float, var maxHeal: Float) : BehaviorPattern("bite") {
 	
 	var reloadTimer: Float = 0f;
 	var healed: Float = 0f;
@@ -47,7 +47,7 @@ open class BiteBehavior(var damage: Float, var reload: Float, var angleMax: Floa
 				healed += damage / 5f;
 			}
 			
-			if (Mathf.chance(0.07) && enemy is mindustry.gen.Unit) enemy.`apply`(StatusEffects.unmoving, 100f);
+			if (Mathf.chance(0.04) && enemy is mindustry.gen.Unit) enemy.`apply`(StatusEffects.unmoving, 100f);
 		}
 	}
 	

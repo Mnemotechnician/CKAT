@@ -14,9 +14,9 @@ import stingray.content.*;
 open class StingrayMod : Mod() {
 	
 	init {
-		Events.on(EventType.ClientLoadEvent::class.java, {
+		Events.on(EventType.ClientLoadEvent::class.java) {
 			Updater.checkUpdates(this);
-		});
+		};
 	}
 
 	override open fun loadContent() {

@@ -12,7 +12,7 @@ import mindustry.entities.*;
 import stingray.content.*;
 import stingray.entities.*;
 
-open class DashBehavior(var damage: Float, var reload: Float, var angleMax: Float, var range: Float) : BehaviorPattern() {
+open class DashBehavior(var damage: Float, var reload: Float, var angleMax: Float, var range: Float) : BehaviorPattern("dash") {
 	
 	var target: mindustry.gen.Unit? = null;
 	var dashCharge: Float = 0f;

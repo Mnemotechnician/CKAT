@@ -19,11 +19,12 @@ import stingray.content.*;
 import stingray.entities.*;
 import stingray.entities.behavior.*;
 import stingray.ai.types.*;
+import stingray.type.*;
 
 open class StingrayUnitTypes : ContentList {
 
 	override open fun load() {
-		urotry = object : UnitType("urotry") {}.apply {
+		urotry = object : StingrayUnitType("urotry") {}.apply {
 			speed = 1.1f;
 			
 			hitSize = 27f;
@@ -45,7 +46,7 @@ open class StingrayUnitTypes : ContentList {
 		))};
 		urotry.defaultController = Prov { StingrayAI() };
 		
-		mylio = object : UnitType("mylio") {}.apply {
+		mylio = object : StingrayUnitType("mylio") {}.apply {
 			speed = 0.5f;
 			hitSize = 37f;
 			
@@ -68,7 +69,7 @@ open class StingrayUnitTypes : ContentList {
 		)) };
 		mylio.defaultController = Prov { StingrayAI() };
 		
-		undulate = object : UnitType("undulate") {}.apply {
+		undulate = object : StingrayUnitType("undulate") {}.apply {
 			speed = 1.2f;
 			hitSize = 64f;
 		
@@ -85,13 +86,13 @@ open class StingrayUnitTypes : ContentList {
 			immunities = ObjectSet.with(StatusEffects.wet); 
 		}
 		undulate.constructor = Prov { StingrayUnit(Seq.with(
-			BiteBehavior(28f, 60 / 8f, 47f, 32f, 120f),
+			BiteBehavior(38f, 60 / 8f, 47f, 32f, 120f),
 			SwimBehavior(1.35f)	
 		)) };
 		undulate.defaultController = Prov { StingrayAI() };
 			
 			
-		dasya = object : UnitType("dasya") {}.apply {
+		dasya = object : StingrayUnitType("dasya") {}.apply {
 			speed = 0.9f;
 			
 			hitSize = 96f;
@@ -155,7 +156,7 @@ open class StingrayUnitTypes : ContentList {
 					override fun draw(bullet: Bullet) {
 						val progress = Interp.sineOut.apply(bullet.fout());
 						Draw.alpha((bullet.fin() - 0.0125f) * 40f); /*5 + 10 ticks until full visibility*/
-						Draw.rect(region, bullet.x, bullet.y, visualSize * progress, visualSize * progress, progress * 2880);
+						Draw.rect(region, bullet.x, bullet.y, visualSize * progress, visualSize * progress, Interp.sineIn.applu(progress) * 2880);
 					}
 					
 					//no idea, this is present in the original code
@@ -175,10 +176,10 @@ open class StingrayUnitTypes : ContentList {
 
 	//what the hell
 	companion object {
-		lateinit var urotry: UnitType;
-		lateinit var mylio: UnitType;
-		lateinit var undulate: UnitType;
-		lateinit var dasya: UnitType;
+		lateinit var urotry: StingrayUnitType;
+		lateinit var mylio: StingrayUnitType;
+		lateinit var undulate: StingrayUnitType;
+		lateinit var dasya: StingrayUnitType;
 	}
 	
 }
