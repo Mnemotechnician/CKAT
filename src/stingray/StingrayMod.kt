@@ -8,6 +8,7 @@ import mindustry.mod.*;
 import mindustry.type.*;
 import mindustry.content.*;
 import mindustry.world.blocks.units.*;
+
 import stingray.content.*;
 
 open class StingrayMod : Mod() {
@@ -25,10 +26,10 @@ open class StingrayMod : Mod() {
 		
 		//Add construction plans, idk where to put it other than here
 		val cost = ItemStack.with(Items.graphite, 20, Items.silicon, 35, Items.titanium, 10, Items.metaglass, 10);
-		Blocks.navalFactory.plans.add(UnitFactory.UnitPlan(StringrayUnitTypes.Urotry, 60 * 30f, cost));
+		(Blocks.navalFactory as UnitFactory).plans.add(UnitFactory.UnitPlan(StingrayUnitTypes.urotry, 60 * 30f, cost));
 		
-		Blocks.additiveReconstructor.addUpgrade(StingrayUnitTypes.Urotry, StringrayUnitTypes.Mylio);
-		Blocks.multiplicativeReconstructor.addUpgrade(StingrayUnitTypes.Mylio, StingrayUnitTypes.Undulate);
-		Blocks.exponentialReconstructor.addUpgrade(StingrayUnitTypes.Undulate, StingrayUnitTypes.Dasya);
+		(Blocks.additiveReconstructor as Reconstructor).addUpgrade(StingrayUnitTypes.urotry, StingrayUnitTypes.mylio);
+		(Blocks.multiplicativeReconstructor as Reconstructor).addUpgrade(StingrayUnitTypes.mylio, StingrayUnitTypes.undulate);
+		(Blocks.exponentialReconstructor as Reconstructor).addUpgrade(StingrayUnitTypes.undulate, StingrayUnitTypes.dasya);
 	}
 }
