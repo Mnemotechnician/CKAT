@@ -1,5 +1,6 @@
 package stingray.entities.behavior;
 
+import arc.*;
 import arc.scene.ui.layout.*;
 import mindustry.content.*;
 import stingray.entities.*;
@@ -23,7 +24,7 @@ open class SwimBehavior(var multiplier: Float) : BehaviorPattern("swim") {
 	override open fun display(table: Table) {
 		super.display(table);
 		
-		speed: String = Core.bundle["ckat-stingray-speed"];
+		val speed: String = Core.bundle["ckat-stingray-speed"];
 		table.table {
 			it.center();
 			it.add("@ckat-stingray.stat.swim-shallow").marginRight(5f);
