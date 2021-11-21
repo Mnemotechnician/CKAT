@@ -5,6 +5,7 @@ import arc.*;
 import arc.util.*;
 import mindustry.game.*;
 import mindustry.mod.*;
+import mindustry.world.blocks.units.*;
 import stingray.content.*;
 
 open class StingrayMod : Mod() {
@@ -19,5 +20,18 @@ open class StingrayMod : Mod() {
 		StingrayFx().load();
 		StingrayUnitTypes().load();
 		StingrayTechTree().load();
+		
+		//Add construction plans, idk where to put it other than here
+		Blocks.navalFactory.plans.add(
+			new UnitFactory.UnitPlan(StringrayUnitTypes.Urotry, 60 * 30, ItemStack.with(
+				Items.graphite, 20,
+				Items.silicon, 35,
+				Items.titanium, 10, 
+				Items.metaglass, 10
+			))
+		);
+		Blocks.additiveReconstructor.addUpgrade(StingrayUnitTypes.Urotry, StringrayUnitTypes.Mylio);
+		Blocks.multiplicativeReconstructor.addUpgrade(StingrayUnitTypes.Mylio, StingrayUnitTypes.Undulate);
+		Blocks.exponentialReconstructor.addUpgrade(StingrayUnitTypes.Undulate, StingrayUnitTypes.Dasya);
 	}
 }
