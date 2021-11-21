@@ -1,5 +1,6 @@
 package stingray.entities.behavior;
 
+import arc.*;
 import arc.util.*;
 import arc.math.*;
 import arc.scene.ui.layout.*;
@@ -66,7 +67,7 @@ open class BiteBehavior(var damage: Float, var reload: Float, var angleMax: Floa
 			it.add("$damage / ${Core.bundle["ckat-stingray-bite"]}");
 			it.add("$reload ${Core.bundle["ckat-stingray-seconds"]}");
 			it.add("${angleMax * 2}°");
-			it.add("${range / 8} ${Core.bundle["ckat-stingray-blocks"]}");
+			it.add("${padding / 8} ${Core.bundle["ckat-stingray-blocks"]}");
 			it.add("${maxHeal} / ${Core.bundle["ckat-stingray-bite"]}");
 		}
 	}
