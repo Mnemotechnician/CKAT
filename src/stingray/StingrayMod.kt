@@ -5,6 +5,8 @@ import arc.*;
 import arc.util.*;
 import mindustry.game.*;
 import mindustry.mod.*;
+import mindustry.type.*;
+import mindustry.content.*;
 import mindustry.world.blocks.units.*;
 import stingray.content.*;
 
@@ -23,7 +25,7 @@ open class StingrayMod : Mod() {
 		
 		//Add construction plans, idk where to put it other than here
 		Blocks.navalFactory.plans.add(
-			new UnitFactory.UnitPlan(StringrayUnitTypes.Urotry, 60 * 30, ItemStack.with(
+			new UnitFactory.UnitPlan(StringrayUnitTypes.Urotry, 60 * 30f, ItemStack.with(
 				Items.graphite, 20,
 				Items.silicon, 35,
 				Items.titanium, 10, 
