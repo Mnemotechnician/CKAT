@@ -39,11 +39,13 @@ open class StingrayUnitTypes : ContentList {
 			mechStepShake = 0f;
 			
 			immunities = ObjectSet.with(StatusEffects.wet);
+			
+			behavior = Seq.with(
+				BiteBehavior(25f, 60f / 3f, 135f, 10f, 10f),
+				SwimBehavior(1.5f)
+			);
 		}
-		urotry.constructor = Prov {StingrayUnit(Seq.with(
-			BiteBehavior(25f, 60f / 3f, 135f, 10f, 10f),
-			SwimBehavior(1.5f)
-		))};
+		urotry.constructor = Prov {StingrayUnit()};
 		urotry.defaultController = Prov { StingrayAI() };
 		
 		mylio = object : StingrayUnitType("mylio") {}.apply {
@@ -61,12 +63,14 @@ open class StingrayUnitTypes : ContentList {
 			mechStepShake = 0f;
 			
 			immunities = ObjectSet.with(StatusEffects.wet);
+			
+			behavior = Seq.with(
+				BiteBehavior(50f, 60f / 4f, 15f, 40f, 13f),
+				SwimBehavior(2.2f),
+				DashBehavior(500f, 10f * 60f, 15f, 8 * 30f)
+			);
 		}
-		mylio.constructor = Prov { StingrayUnit(Seq.with(
-			BiteBehavior(50f, 60f / 4f, 15f, 40f, 13f),
-			SwimBehavior(2.2f),
-			DashBehavior(500f, 10f * 60f, 15f, 8 * 30f)
-		)) };
+		mylio.constructor = Prov { StingrayUnit() };
 		mylio.defaultController = Prov { StingrayAI() };
 		
 		undulate = object : StingrayUnitType("undulate") {}.apply {
@@ -84,11 +88,13 @@ open class StingrayUnitTypes : ContentList {
 			mechStepShake = 0f;
 			
 			immunities = ObjectSet.with(StatusEffects.wet); 
+			
+			behavior = Seq.with(
+				BiteBehavior(38f, 60 / 8f, 47f, 32f, 15f),
+				SwimBehavior(1.35f)	
+			);
 		}
-		undulate.constructor = Prov { StingrayUnit(Seq.with(
-			BiteBehavior(38f, 60 / 8f, 47f, 32f, 15f),
-			SwimBehavior(1.35f)	
-		)) };
+		undulate.constructor = Prov { StingrayUnit() };
 		undulate.defaultController = Prov { StingrayAI() };
 			
 			
@@ -108,6 +114,12 @@ open class StingrayUnitTypes : ContentList {
 			mechStepShake = 0f;
 			
 			immunities = ObjectSet.with(StatusEffects.wet, StatusEffects.freezing);
+			
+			behavior = Seq.with(
+				BiteBehavior(75f, 60 / 5f, 70f, 32f, 60f),
+				SwimBehavior(1.3f),
+				DashBehavior(2300f, 15f * 60f, 20f, 8 * 40f)
+			);
 			
 			weapons = Seq.with(object : Weapon("hurricane-generator") {}.apply {
 				top = true;
@@ -166,11 +178,7 @@ open class StingrayUnitTypes : ContentList {
 				}
 			});
 		}
-		dasya.constructor = Prov { StingrayUnit(Seq.with(
-			BiteBehavior(75f, 60 / 5f, 70f, 32f, 60f),
-			SwimBehavior(1.3f),
-			DashBehavior(2300f, 15f * 60f, 20f, 8 * 40f)
-		)) };
+		dasya.constructor = Prov { StingrayUnit() };
 		dasya.defaultController = Prov { StingrayAI() };
 	}
 

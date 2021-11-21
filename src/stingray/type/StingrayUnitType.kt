@@ -7,8 +7,9 @@ import mindustry.ui.*;
 
 import stingray.entities.*;
 
-/** Only used for custom stat display */
 open class StingrayUnitType(name: String) : UnitType(name) {
+
+	lateinit var behavior: Seq<BehaviorPattern>(5);
 	
 	override fun setStats() {
 		super.setStats();

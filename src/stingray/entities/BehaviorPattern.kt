@@ -8,11 +8,6 @@ import mindustry.gen.*;
 /** Similar to Ability, except that it's handled by the Unit object, one instance of pattern is created per unit and it's stats can displayed in the database */
 abstract open class BehaviorPattern(val name: String) {
 
-	init {
-		//todo: I'm accessing the map every time a new unit object is created. could i move that to unit types or somewhere else?
-		BehaviorPattern.patternMap.put(name, this::class);
-	}
-	
 	open fun apply(parent: mindustry.gen.Unit) {
 		
 	}
@@ -34,12 +29,6 @@ abstract open class BehaviorPattern(val name: String) {
 	}
 	
 	open fun read(reads: Reads, revision: Int) {
-		
-	}
-	
-	companion object {
-		
-		val patternMap = ObjectMap<String, KClass<BehaviorPattern>>(5);
 		
 	}
 	
