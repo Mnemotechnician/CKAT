@@ -29,7 +29,7 @@ repositories{
 dependencies{
     compileOnly "com.github.Anuken.Arc:arc-core:$mindustryVersion"
     compileOnly "com.github.Anuken.Mindustry:core:$mindustryVersion"
-    implementation files("libs/Autoupdate-lib")
+    implementation files("lib/Autoupdate-lib")
 }
 
 compileKotlin{
