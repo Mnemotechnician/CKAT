@@ -22,7 +22,7 @@ open class StingrayUnitType(name: String) : UnitType(name) {
 				example.behavior.each { behavior: BehaviorPattern ->
 					table.table {
 						behavior.display(it);
-					}.marginBottom(10).row();
+					}.marginBottom(10f).row();
 				}
 			}.growX();
 		});
