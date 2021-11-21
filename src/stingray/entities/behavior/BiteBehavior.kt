@@ -2,6 +2,7 @@ package stingray.entities.behavior;
 
 import arc.*;
 import arc.util.*;
+import arc.util.io.*;
 import arc.math.*;
 import arc.scene.ui.layout.*;
 import mindustry.gen.*;
@@ -71,6 +72,16 @@ open class BiteBehavior(var damage: Float, var reload: Float, var angleMax: Floa
 			it.add("${padding / 8} ${Core.bundle["ckat-stingray-blocks"]}");
 			it.add("${maxHeal} / ${Core.bundle["ckat-stingray-bite"]}");
 		}
+	}
+	
+	override open fun write(writes: Writes) {
+		super.write(writes);
+		writes.f(reloadTimer);
+	}
+	
+	override open fun read(reads: Reads, revision: Int) {
+		super.read(reads);
+		reloadTimer = reads.f();
 	}
 	
 }

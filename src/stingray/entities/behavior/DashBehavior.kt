@@ -2,6 +2,7 @@ package stingray.entities.behavior;
 
 import arc.*;
 import arc.util.*;
+import arc.util.io.*;
 import arc.math.*;
 import arc.graphics.*;
 import arc.graphics.g2d.*;
@@ -90,6 +91,20 @@ open class DashBehavior(var damage: Float, var reload: Float, var angleMax: Floa
 			it.add("${angleMax * 2}°");
 			it.add("${range / 8} ${Core.bundle["ckat-stingray-blocks"]}");
 		}
+	}
+	
+	override open fun write(writes: Writes) {
+		super.write(writes);
+		writes.f(dashCharge);
+		writes.f(dashTimer);
+		writes.f(effectTimer);
+	}
+	
+	override open fun read(reads: Reads, revision: Int) {
+		super.read(reads);
+		dashCharge = reads.f();
+		dashTimer = reads.f();
+		effectTimer = reads.f();
 	}
 	
 }

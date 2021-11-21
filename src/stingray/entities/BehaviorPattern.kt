@@ -1,5 +1,6 @@
 package stingray.entities;
 
+import arc.util.io.*;
 import arc.scene.ui.layout.*;
 import mindustry.gen.*;
 
@@ -16,6 +17,18 @@ abstract open class BehaviorPattern(val name: String) {
 	
 	open fun display(table: Table) {
 		table.add("@ckat-stingray.ability.$name").fillY().center().pad(5f).marginRight(15f);
+	}
+	
+	open fun version(): Int {
+		return 1;
+	}
+	
+	open fun write(writes: Writes) {
+		
+	}
+	
+	open fun read(reads: Reads, revision: Int) {
+		
 	}
 	
 }
