@@ -79,6 +79,7 @@ open class DashBehavior(var damage: Float, var reload: Float, var angleMax: Floa
 		super.display(table);
 		
 		table.table {
+			it.defaults().marginRight(5f);
 			it.add("@ckat-stingray.stat.damage");
 			it.add("@ckat-stingray.stat.reload");
 			it.add("@ckat-stingray.stat.angle");
