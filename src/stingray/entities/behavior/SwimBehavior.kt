@@ -26,7 +26,7 @@ open class SwimBehavior(var multiplier: Float) : BehaviorPattern("swim") {
 		
 		val speed: String = Core.bundle["ckat-stingray-speed"];
 		table.table {
-			it.defaults().pad(5f);
+			it.defaults().growX().pad(5f);
 			it.add("@ckat-stingray.stat.swim-shallow");
 			it.add("@ckat-stingray.stat.swim-deep");
 			it.row();

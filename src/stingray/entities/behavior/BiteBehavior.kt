@@ -58,7 +58,7 @@ open class BiteBehavior(var damage: Float, var reload: Float, var angleMax: Floa
 		super.display(table);
 		
 		table.table {
-			it.defaults().pad(5f);
+			it.defaults().growX().pad(5f);
 			it.add("@ckat-stingray.stat.damage");
 			it.add("@ckat-stingray.stat.reload");
 			it.add("@ckat-stingray.stat.angle");
@@ -66,7 +66,7 @@ open class BiteBehavior(var damage: Float, var reload: Float, var angleMax: Floa
 			it.add("@ckat-stingray.stat.max-heal");
 			it.row();
 			it.add("$damage / ${Core.bundle["ckat-stingray-bite"]}");
-			it.add("$reload ${Core.bundle["ckat-stingray-seconds"]}");
+			it.add("${reload / 60} ${Core.bundle["ckat-stingray-seconds"]}");
 			it.add("${angleMax * 2}°");
 			it.add("${padding / 8} ${Core.bundle["ckat-stingray-blocks"]}");
 			it.add("${maxHeal} / ${Core.bundle["ckat-stingray-bite"]}");

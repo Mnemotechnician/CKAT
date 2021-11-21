@@ -79,14 +79,14 @@ open class DashBehavior(var damage: Float, var reload: Float, var angleMax: Floa
 		super.display(table);
 		
 		table.table {
-			it.defaults().pad(5f);
+			it.defaults().growX().pad(5f);
 			it.add("@ckat-stingray.stat.damage");
 			it.add("@ckat-stingray.stat.reload");
 			it.add("@ckat-stingray.stat.angle");
 			it.add("@ckat-stingray.stat.range");
 			it.row();
 			it.add("$damage ${Core.bundle["ckat-stingray-upon-hit"]}");
-			it.add("$reload ${Core.bundle["ckat-stingray-seconds"]}");
+			it.add("${reload / 60} ${Core.bundle["ckat-stingray-seconds"]}");
 			it.add("${angleMax * 2}°");
 			it.add("${range / 8} ${Core.bundle["ckat-stingray-blocks"]}");
 		}
