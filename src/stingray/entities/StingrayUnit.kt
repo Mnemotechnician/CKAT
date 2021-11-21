@@ -32,7 +32,7 @@ open class StingrayUnit(var behavior: Seq<BehaviorPattern>) : mindustry.gen.Mech
 	override open fun read(reads: Reads) {
 		super.read(reads);
 		behavior.each {
-			Int version = reads.i();
+			val version = reads.i();
 			it.read(reads, version);
 		};
 	}

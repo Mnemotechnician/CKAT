@@ -80,7 +80,7 @@ open class BiteBehavior(var damage: Float, var reload: Float, var angleMax: Floa
 	}
 	
 	override open fun read(reads: Reads, revision: Int) {
-		super.read(reads);
+		super.read(reads, revision);
 		reloadTimer = reads.f();
 	}
 	

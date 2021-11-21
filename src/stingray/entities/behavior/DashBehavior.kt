@@ -101,7 +101,7 @@ open class DashBehavior(var damage: Float, var reload: Float, var angleMax: Floa
 	}
 	
 	override open fun read(reads: Reads, revision: Int) {
-		super.read(reads);
+		super.read(reads, revision);
 		dashCharge = reads.f();
 		dashTimer = reads.f();
 		effectTimer = reads.f();
