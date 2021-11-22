@@ -1,6 +1,7 @@
 package stingray.type;
 
 import arc.struct.*;
+import arc.util.*;
 import arc.func.*;
 import arc.scene.ui.layout.*;
 import mindustry.game.*;
@@ -20,7 +21,7 @@ open class StingrayUnitType(name: String) : UnitType(name) {
 		defaultController = Prov { StingrayAI() };
 	}
 	
-	override fun create(team: Team): mindustry.gen.unit {
+	override fun create(team: Team): mindustry.gen.Unit {
 		val unit = super.create(team);
 		
 		if (unit !is StingrayUnit) {
