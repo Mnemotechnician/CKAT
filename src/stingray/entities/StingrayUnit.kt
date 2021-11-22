@@ -12,7 +12,7 @@ open class StingrayUnit : mindustry.gen.MechUnit() {
 
 	val behavior = Seq<BehaviorPattern>(5);
 
-	init {
+	constructor() {
 		if (!behavior.isEmpty()) {
 			behavior.clear();
 		}
