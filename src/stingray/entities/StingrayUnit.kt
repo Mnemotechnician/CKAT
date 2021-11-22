@@ -20,7 +20,7 @@ open class StingrayUnit : mindustry.gen.MechUnit() {
 		val type = this.type;
 		if (type !is StingrayUnitType) {
 			Log.warn("not a stingray, get out of my land!");
-			Log.warn("it is ${type::class}, a descendant of ${type::class.getSuperclass}")
+			Log.warn("it is ${type::class}, a descendant of ${type::class.getSuperclass()}")
 		} else {
 			type.behavior.each {
 				val copy = it.copy();
