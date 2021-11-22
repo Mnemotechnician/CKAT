@@ -12,7 +12,7 @@ open class StingrayUnit : mindustry.gen.MechUnit() {
 
 	val behavior = Seq<BehaviorPattern>(5);
 
-	constructor() {
+	init {
 		if (!behavior.isEmpty()) {
 			behavior.clear();
 		}
@@ -20,12 +20,11 @@ open class StingrayUnit : mindustry.gen.MechUnit() {
 		val type = this.type;
 		if (type !is StingrayUnitType) {
 			Log.warn("not a stingray, get out of my land!");
-			return;
-		}
-		
-		type.behavior.each {
-			val copy = it.copy();
-			behavior.add(copy);
+		} else {
+			type.behavior.each {
+				val copy = it.copy();
+				behavior.add(copy);
+			}
 		}
 	}
 	
