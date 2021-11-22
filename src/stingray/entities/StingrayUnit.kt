@@ -11,23 +11,6 @@ import stingray.type.*;
 open class StingrayUnit : mindustry.gen.MechUnit() {
 
 	val behavior = Seq<BehaviorPattern>(5);
-
-	init {
-		if (!behavior.isEmpty()) {
-			behavior.clear();
-		}
-		
-		val type = this.type;
-		if (type !is StingrayUnitType) {
-			Log.warn("not a stingray, get out of my land!");
-			Log.warn("it is ${type::class}, a descendant of ${type::class.java.getSuperclass()}")
-		} else {
-			type.behavior.each {
-				val copy = it.copy();
-				behavior.add(copy);
-			}
-		}
-	}
 	
 	override open fun update() {
 		super.update();

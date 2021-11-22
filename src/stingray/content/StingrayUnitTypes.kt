@@ -45,8 +45,6 @@ open class StingrayUnitTypes : ContentList {
 				SwimBehavior(1.5f)
 			);
 		}
-		urotry.constructor = Prov { StingrayUnit() };
-		urotry.defaultController = Prov { StingrayAI() };
 		
 		mylio = object : StingrayUnitType("mylio") {}.apply {
 			speed = 0.5f;
@@ -70,8 +68,6 @@ open class StingrayUnitTypes : ContentList {
 				DashBehavior(500f, 10f * 60f, 15f, 8 * 30f)
 			);
 		}
-		mylio.constructor = Prov { StingrayUnit() };
-		mylio.defaultController = Prov { StingrayAI() };
 		
 		undulate = object : StingrayUnitType("undulate") {}.apply {
 			speed = 1.2f;
@@ -94,9 +90,6 @@ open class StingrayUnitTypes : ContentList {
 				SwimBehavior(1.35f)	
 			);
 		}
-		undulate.constructor = Prov { StingrayUnit() };
-		undulate.defaultController = Prov { StingrayAI() };
-			
 			
 		dasya = object : StingrayUnitType("dasya") {}.apply {
 			speed = 0.9f;
@@ -178,8 +171,6 @@ open class StingrayUnitTypes : ContentList {
 				}
 			});
 		}
-		dasya.constructor = Prov { StingrayUnit() };
-		dasya.defaultController = Prov { StingrayAI() };
 	}
 
 	//what the hell
