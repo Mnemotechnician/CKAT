@@ -1,5 +1,6 @@
 package stingray.type;
 
+import arc.struct.*;
 import arc.scene.ui.layout.*;
 import mindustry.type.*;
 import mindustry.world.meta.*;

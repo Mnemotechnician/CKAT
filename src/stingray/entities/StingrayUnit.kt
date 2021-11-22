@@ -20,7 +20,8 @@ open class StingrayUnit : mindustry.gen.MechUnit() {
 		val type = this.type;
 		if (type !is StingrayUnitType) throw Exception("not a stingray, get out of my land!");
 		type.behavior.each {
-			behavior.add(it.copy());
+			val copy = it.copy();
+			behavior.add(copy);
 		}
 	}
 	
@@ -50,7 +51,7 @@ open class StingrayUnit : mindustry.gen.MechUnit() {
 		super.read(reads);
 		behavior.each {
 			val version = reads.i();
-			it.read(reads);
+			it.read(reads, version);
 		}
 	}
 	
