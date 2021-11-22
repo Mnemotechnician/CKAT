@@ -45,7 +45,7 @@ open class StingrayUnitTypes : ContentList {
 				SwimBehavior(1.5f)
 			);
 		}
-		urotry.constructor = Prov {StingrayUnit()};
+		urotry.constructor = Prov { StingrayUnit() };
 		urotry.defaultController = Prov { StingrayAI() };
 		
 		mylio = object : StingrayUnitType("mylio") {}.apply {

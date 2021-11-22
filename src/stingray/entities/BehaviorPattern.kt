@@ -32,4 +32,8 @@ abstract open class BehaviorPattern(val name: String) {
 		
 	}
 	
+	/** *inhales*
+	 * A */
+	abstract open fun copy(): BehaviorPattern;
+	
 }

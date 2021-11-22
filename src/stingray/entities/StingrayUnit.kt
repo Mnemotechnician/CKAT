@@ -13,9 +13,14 @@ open class StingrayUnit : mindustry.gen.MechUnit() {
 	val behavior = Seq<BehaviorPattern>(5);
 
 	init {
+		if (!behavior.isEmpty()) {
+			behavior.clear();
+		}
+		
+		val type = this.type;
 		if (type !is StingrayUnitType) throw Exception("not a stingray, get out of my land!");
-		this.type.behavior.each {
-			behavior.add(it);
+		type.behavior.each {
+			behavior.add(it.copy());
 		}
 	}
 	
@@ -35,7 +40,7 @@ open class StingrayUnit : mindustry.gen.MechUnit() {
 	
 	override fun write(writes: Writes) {
 		super.write(writes);
-		type.behavior.each {
+		behavior.each {
 			writes.i(it.version());
 			it.write(writes);
 		}
@@ -43,7 +48,7 @@ open class StingrayUnit : mindustry.gen.MechUnit() {
 	
 	override fun read(reads: Reads) {
 		super.read(reads);
-		type.behavior.each {
+		behavior.each {
 			val version = reads.i();
 			it.read(reads);
 		}

@@ -35,4 +35,6 @@ open class SwimBehavior(var multiplier: Float) : BehaviorPattern("swim") {
 		}.growY();
 	}
 	
+	override open fun copy() = SwimBehavior(multiplier);
+	
 }

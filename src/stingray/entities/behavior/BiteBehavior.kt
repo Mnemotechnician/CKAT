@@ -84,4 +84,6 @@ open class BiteBehavior(var damage: Float, var reload: Float, var angleMax: Floa
 		reloadTimer = reads.f();
 	}
 	
+	override open fun copy() = BiteBehavior(damage, reload, angleMax, padding, maxHeal);
+	
 }

@@ -107,4 +107,6 @@ open class DashBehavior(var damage: Float, var reload: Float, var angleMax: Floa
 		effectTimer = reads.f();
 	}
 	
+	override open fun copy() = DashBehavior(damage, reload, angleMax, range);
+	
 }
