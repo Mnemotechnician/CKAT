@@ -26,6 +26,9 @@ open class StingrayUnit : mindustry.gen.MechUnit() {
 		}
 	}
 	
+	/*
+	TODO: doesn't work.
+	
 	override fun write(writes: Writes) {
 		super.write(writes);
 		behavior.each {
@@ -41,5 +44,6 @@ open class StingrayUnit : mindustry.gen.MechUnit() {
 			it.read(reads, version);
 		}
 	}
+	*/
 	
 }
