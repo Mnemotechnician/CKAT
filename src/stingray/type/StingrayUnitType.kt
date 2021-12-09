@@ -26,12 +26,8 @@ open class StingrayUnitType : UnitType {
 		val unit = super.create(team);
 		
 		if (unit !is StingrayUnit) {
-			Log.warn("endless suffering");
+			Log.warn("only ckats are allowed to be gods");
 			return unit;
-		}
-		
-		behavior.each {
-			unit.behavior.add(it.copy());
 		}
 		
 		return unit;

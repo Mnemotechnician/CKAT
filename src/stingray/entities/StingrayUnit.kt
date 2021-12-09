@@ -1,10 +1,10 @@
 package stingray.entities;
 
-import kotlin.reflect.*;
 import arc.struct.*;
 import arc.util.*;
 import arc.util.io.*;
 import mindustry.gen.*;
+
 import stingray.entities.*;
 import stingray.type.*;
 
@@ -12,11 +12,28 @@ open class StingrayUnit : mindustry.gen.MechUnit() {
 
 	val behavior = Seq<BehaviorPattern>(5);
 	
+	private var initialized = false;
+	
 	override open fun update() {
 		super.update();
+		
+		if (!initialized) {
+			initialize();
+			initialized = true;
+		}
+		
 		behavior.each {
 			it.apply(this);
 		};
+	}
+	
+	/** Copies the behavior of it's UnitType in it's default implementation */
+	open fun initialize() {
+		if (type is StingrayUnitType) {
+			type.behavior.each {
+				behavior.add(it.copy());
+			}
+		}
 	}
 	
 	override open fun draw() {
@@ -29,9 +46,6 @@ open class StingrayUnit : mindustry.gen.MechUnit() {
 	override fun classId(): Int {
 		return mappingId
 	}
-	
-	/*
-	TODO: doesn't work.
 	
 	override fun write(writes: Writes) {
 		super.write(writes);
@@ -48,7 +62,6 @@ open class StingrayUnit : mindustry.gen.MechUnit() {
 			it.read(reads, version);
 		}
 	}
-	*/
 	
 	companion object {
 		val mappingId = EntityMapping.register("ckat-stingray", ::StingrayUnit)

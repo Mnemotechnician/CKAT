@@ -32,8 +32,11 @@ abstract open class BehaviorPattern(val name: String) {
 		
 	}
 	
-	/** *inhales*
-	 * A */
+	/** 
+	 * Should provide a copy of the pattern
+	 * *inhales*
+	 * AAAAAAA
+	 */
 	abstract open fun copy(): BehaviorPattern;
 	
 }
