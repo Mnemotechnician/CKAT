@@ -26,11 +26,9 @@ open class StingrayUnit : mindustry.gen.MechUnit() {
 		}
 	}
 	
-	/** amogus 
 	override fun classId(): Int {
-		val next = Structs.indexOf(EntityMapping.idMap) { it == null };
-		return next
-	}*/
+		return id
+	}
 	
 	/*
 	TODO: doesn't work.
@@ -51,5 +49,9 @@ open class StingrayUnit : mindustry.gen.MechUnit() {
 		}
 	}
 	*/
+	
+	companion object {
+		val id = EntityMapping.register("stingray", ::StingrayUnit)
+	}
 	
 }
