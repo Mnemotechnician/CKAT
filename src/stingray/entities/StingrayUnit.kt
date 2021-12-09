@@ -58,10 +58,17 @@ open class StingrayUnit : mindustry.gen.MechUnit() {
 	
 	override fun read(reads: Reads) {
 		super.read(reads);
-		behavior.each {
+		
+		val type = type;
+		if (type !is StingrayUnitType) return;
+		
+		type.behavior.each {
 			val version = reads.i();
-			it.read(reads, version);
+			val b = it.copy();
+			b.read(reads, version);
+			this.behavior.add(b)
 		}
+		initialized = true;
 	}
 	
 	override fun toString(): String {
