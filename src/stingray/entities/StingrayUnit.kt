@@ -81,7 +81,7 @@ open class StingrayUnit : mindustry.gen.MechUnit() {
 				var example: BehaviorPattern? = type.behavior.find { it::class.java == clazz }
 				if (example == null) {
 					//no such ability, try to create one
-					example = clazz.newInstance();
+					example = clazz.newInstance() as BehaviorPattern;
 				}
 				
 				val b = example.copy()
