@@ -18,7 +18,7 @@ open class BiteBehavior(var damage: Float, var reload: Float, var angleMax: Floa
 	
 	val effect = Fx.generate;
 	
-	constructor() : this(0, 0, 0, 0, 0) {};
+	constructor() : this(0f, 0f, 0f, 0f, 0f) {};
 	
 	override open fun apply(parent: mindustry.gen.Unit) {
 		reloadTimer += Time.delta;

@@ -24,7 +24,7 @@ open class DashBehavior(var damage: Float, var reload: Float, var angleMax: Floa
 	
 	var speed: Float = 2f;
 	
-	constructor() : this(0, 0, 0, 0) {};
+	constructor() : this(0f, 0f, 0f, 0f) {};
 	
 	override open fun apply(parent: mindustry.gen.Unit) {
 		if (dashTimer <= 0f) {

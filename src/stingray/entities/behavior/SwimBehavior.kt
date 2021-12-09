@@ -7,7 +7,7 @@ import stingray.entities.*;
 
 open class SwimBehavior(var multiplier: Float) : BehaviorPattern("swim") {
 
-	constructor() : this(0) {};
+	constructor() : this(0f) {};
 	
 	override open fun apply(parent: mindustry.gen.Unit) {
 		val floor = parent.floorOn();

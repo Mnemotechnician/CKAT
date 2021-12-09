@@ -89,7 +89,7 @@ open class StingrayUnit : mindustry.gen.MechUnit() {
 				this.behavior.add(b);
 			} catch (e: java.lang.ClassNotFoundException) {
 				Log.err("unknown behavior class: $name. The save has probably been corrupted.", e)
-			} catch (e: java.lang.InstantinationException) {
+			} catch (e: java.lang.InstantiationException) {
 				Log.err("ability $name is not found in it's parent and it doesn't have an argumentless constructor", e)
 			}
 		}
