@@ -13,11 +13,11 @@ import mindustry.gen.*;
 import stingray.ai.types.*;
 import stingray.entities.*;
 
-open class StingrayUnitType(name: String) : UnitType(name) {
+open class StingrayUnitType : UnitType {
 
 	lateinit var behavior: Seq<BehaviorPattern>;
 	
-	init {
+	constructor(name: String) : super(name) {
 		constructor = Prov { StingrayUnit() };
 		EntityMapping.register(name, constructor);
 		defaultController = Prov { StingrayAI() };

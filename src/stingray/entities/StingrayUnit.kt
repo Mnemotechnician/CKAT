@@ -26,11 +26,11 @@ open class StingrayUnit : mindustry.gen.MechUnit() {
 		}
 	}
 	
-	/** amogus */
+	/** amogus 
 	override fun classId(): Int {
 		val next = Structs.indexOf(EntityMapping.idMap) { it == null };
 		return next
-	}
+	}*/
 	
 	/*
 	TODO: doesn't work.
