@@ -5,7 +5,10 @@ import arc.util.io.*;
 import arc.scene.ui.layout.*;
 import mindustry.gen.*;
 
-/** Similar to Ability, except that it's handled by the Unit object, one instance of pattern is created per unit and it's stats can displayed in the database */
+/** 
+ * Similar to Ability, except that it's handled by the Unit object, one instance of pattern is created per unit and it's stats can displayed in the database
+ * All patterns should have a constructor accepting no arguments, in order to avoid save corruption
+ */
 abstract open class BehaviorPattern(val name: String) {
 
 	open fun apply(parent: mindustry.gen.Unit) {

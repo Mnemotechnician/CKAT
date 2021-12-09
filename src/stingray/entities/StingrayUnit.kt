@@ -50,8 +50,11 @@ open class StingrayUnit : mindustry.gen.MechUnit() {
 	
 	override fun write(writes: Writes) {
 		super.write(writes);
+		
+		writes.i(behavior.size)
 		behavior.each {
 			writes.i(it.version());
+			writes.str(it::class.java.name); //yes, this will for sure impact the file size, but this is the most failsafe method
 			it.write(writes);
 		}
 	}
@@ -68,12 +71,27 @@ open class StingrayUnit : mindustry.gen.MechUnit() {
 		
 		Log.info("type behavior: ${type.behavior}")
 		
-		type.behavior.each {
-			Log.info("reading $it")
-			val b = it.copy();
+		val size = reads.i();
+		repeat(size) {
 			val version = reads.i();
-			b.read(reads, version);
-			this.behavior.add(b);
+			val name = reads.str();
+			try {
+				val clazz = java.lang.Class.forName(name);
+				//try to find such ability in the type
+				var example: BehaviorPattern? = type.behavior.find { it::class.java == clazz }
+				if (example == null) {
+					//no such ability, try to create one
+					example = clazz.newInstance();
+				}
+				
+				val b = example.copy()
+				b.read(reads, version);
+				this.behavior.add(b);
+			} catch (e: java.lang.ClassNotFoundException) {
+				Log.err("unknown behavior class: $name. The save has probably been corrupted.", e)
+			} catch (e: java.lang.InstantinationException) {
+				Log.err("ability $name is not found in it's parent and it doesn't have an argumentless constructor", e)
+			}
 		}
 		initialized = true;
 	}
