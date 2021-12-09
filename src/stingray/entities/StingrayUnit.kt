@@ -27,7 +27,7 @@ open class StingrayUnit : mindustry.gen.MechUnit() {
 	}
 	
 	override fun classId(): Int {
-		return id
+		return mappingId
 	}
 	
 	/*
@@ -51,7 +51,7 @@ open class StingrayUnit : mindustry.gen.MechUnit() {
 	*/
 	
 	companion object {
-		val id = EntityMapping.register("stingray", ::StingrayUnit)
+		val mappingId = EntityMapping.register("ckat-stingray", ::StingrayUnit)
 	}
 	
 }

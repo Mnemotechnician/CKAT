@@ -18,7 +18,7 @@ open class StingrayUnitType : UnitType {
 	lateinit var behavior: Seq<BehaviorPattern>;
 	
 	constructor(name: String) : super(name) {
-		constructor = Prov { StingrayUnit() };
+		//constructor = Prov { StingrayUnit() };
 		defaultController = Prov { StingrayAI() };
 	}
 	
