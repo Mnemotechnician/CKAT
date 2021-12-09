@@ -1,5 +1,5 @@
-#VERSION 2.0
-#REPO "MHeMoTexHuK/CKAT"
+#!VERSION 2.0
+#!REPO "MHeMoTexHuK/CKAT"
 
 name: "ckat-stingray"
 description: "[royal]Adds a unique скат unit branch.[]\n\nNow in [accent]Kotlin[]!"
@@ -9,3 +9,4 @@ minGameVersion: "133"
 version: "2.0"
 
 main: "stingray.StingrayMod"
+
