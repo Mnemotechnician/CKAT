@@ -18,7 +18,7 @@ open class StingrayUnitType : UnitType {
 	lateinit var behavior: Seq<BehaviorPattern>;
 	
 	constructor(name: String) : super(name) {
-		constructor = EntityMapping.register(name, ::StingrayUnit)
+		constructor = EntityMapping.register(name, { StingrayUnit() })
 		defaultController = Prov { StingrayAI() };
 	}
 	
