@@ -58,6 +58,7 @@ open class StingrayUnit : mindustry.gen.MechUnit() {
 	
 	override fun read(reads: Reads) {
 		super.read(reads);
+		Log.info("reading")
 		
 		val type = type;
 		if (type !is StingrayUnitType) {
@@ -66,8 +67,9 @@ open class StingrayUnit : mindustry.gen.MechUnit() {
 		}
 		
 		type.behavior.each {
-			val version = reads.i();
+			Log.info("reading $it")
 			val b = it.copy();
+			val version = reads.i();
 			b.read(reads, version);
 			this.behavior.add(b);
 		}
