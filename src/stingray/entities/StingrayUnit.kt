@@ -58,13 +58,15 @@ open class StingrayUnit : mindustry.gen.MechUnit() {
 	
 	override fun read(reads: Reads) {
 		super.read(reads);
-		Log.info("reading")
+		Log.info("reading $this")
 		
 		val type = type;
 		if (type !is StingrayUnitType) {
 			Log.warn("not a stingray")
 			return;
 		}
+		
+		Log.info("type behavior: ${type.behavior}")
 		
 		type.behavior.each {
 			Log.info("reading $it")
@@ -77,7 +79,7 @@ open class StingrayUnit : mindustry.gen.MechUnit() {
 	}
 	
 	override fun toString(): String {
-		return "This is a tale of a mighty ckat, ${type.name} — a descendant of ${this::class.java}"
+		return "[blue]This is a tale of a mighty ckat — ${type.name} — a descendant of ${this::class.java}[]"
 	}
 	
 	companion object {
