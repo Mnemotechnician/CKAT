@@ -8,7 +8,7 @@ import mindustry.game.*;
 import mindustry.type.*;
 import mindustry.world.meta.*;
 import mindustry.ui.*;
-import mindustry.entities.*;
+import mindustry.gen.*;
 
 import stingray.ai.types.*;
 import stingray.entities.*;
