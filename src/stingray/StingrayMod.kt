@@ -3,6 +3,7 @@ package stingray;
 import io.mnemotechnician.autoupdater.*;
 import arc.*;
 import arc.util.*;
+import mindustry.gen.*;
 import mindustry.game.*;
 import mindustry.mod.*;
 import mindustry.type.*;
