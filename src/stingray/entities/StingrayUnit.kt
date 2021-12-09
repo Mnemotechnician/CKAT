@@ -29,6 +29,7 @@ open class StingrayUnit : mindustry.gen.MechUnit() {
 	
 	/** Copies the behavior of it's UnitType in it's default implementation */
 	open fun initialize() {
+		val type = type; //immutability
 		if (type is StingrayUnitType) {
 			type.behavior.each {
 				behavior.add(it.copy());
@@ -61,6 +62,10 @@ open class StingrayUnit : mindustry.gen.MechUnit() {
 			val version = reads.i();
 			it.read(reads, version);
 		}
+	}
+	
+	override fun toString(): String {
+		return "This is a tale of a mighty ckat, ${type.name} — a descendant of ${this::class.java}"
 	}
 	
 	companion object {
