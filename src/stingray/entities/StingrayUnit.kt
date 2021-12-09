@@ -61,15 +61,11 @@ open class StingrayUnit : mindustry.gen.MechUnit() {
 	
 	override fun read(reads: Reads) {
 		super.read(reads);
-		Log.info("reading $this")
 		
 		val type = type;
 		if (type !is StingrayUnitType) {
-			Log.warn("not a stingray")
 			return;
 		}
-		
-		Log.info("type behavior: ${type.behavior}")
 		
 		val size = reads.i();
 		repeat(size) {
