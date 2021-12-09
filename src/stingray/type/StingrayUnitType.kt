@@ -8,6 +8,7 @@ import mindustry.game.*;
 import mindustry.type.*;
 import mindustry.world.meta.*;
 import mindustry.ui.*;
+import mindustry.entities.*;
 
 import stingray.ai.types.*;
 import stingray.entities.*;
@@ -18,6 +19,7 @@ open class StingrayUnitType(name: String) : UnitType(name) {
 	
 	init {
 		constructor = Prov { StingrayUnit() };
+		EntityMapping.register(name, constructor);
 		defaultController = Prov { StingrayAI() };
 	}
 	
