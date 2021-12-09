@@ -19,7 +19,7 @@ open class StingrayUnitType : UnitType {
 	
 	constructor(name: String) : super(name) {
 		EntityMapping.register(name, ::StingrayUnit)
-		constructor = EntityMapping.map(name)
+		constructor = ::StingrayUnit
 		defaultController = Prov { StingrayAI() };
 	}
 	
