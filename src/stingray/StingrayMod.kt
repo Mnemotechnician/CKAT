@@ -9,6 +9,7 @@ import mindustry.mod.*;
 import mindustry.type.*;
 import mindustry.content.*;
 
+import stingray.type.*;
 import stingray.content.*;
 
 open class StingrayMod : Mod() {
