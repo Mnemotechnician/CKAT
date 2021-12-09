@@ -28,7 +28,7 @@ open class StingrayUnit : mindustry.gen.MechUnit() {
 	
 	/** amogus */
 	override fun classId(): Int {
-		val next = Structs.indexOf(idMap) { it == null };
+		val next = Structs.indexOf(EntityMapping.idMap) { it == null };
 		return next
 	}
 	
