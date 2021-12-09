@@ -2,8 +2,11 @@
 #!REPO "MHeMoTexHuK/CKAT"
 
 name: "ckat-stingray"
-description: "[royal]Adds a unique скат unit branch.[]\n\nNow with extra js stuff!"
-displayName: "скат"
+description: "[royal]Adds a unique скат unit branch.[]\n\nNow in [accent]Kotlin[]!"
+displayName: "Скат [kotlin]"
 author: "Мнемотехник"
 minGameVersion: "133"
-version: "1.64"
+version: "2.0"
+
+main: "stingray.StingrayMod"
+
