@@ -60,13 +60,16 @@ open class StingrayUnit : mindustry.gen.MechUnit() {
 		super.read(reads);
 		
 		val type = type;
-		if (type !is StingrayUnitType) return;
+		if (type !is StingrayUnitType) {
+			Log.warn("not a stingray")
+			return;
+		}
 		
 		type.behavior.each {
 			val version = reads.i();
 			val b = it.copy();
 			b.read(reads, version);
-			this.behavior.add(b)
+			this.behavior.add(b);
 		}
 		initialized = true;
 	}
