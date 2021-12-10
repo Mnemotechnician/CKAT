@@ -28,9 +28,9 @@ open class StingrayMod : Mod() {
 		
 		//make it possible to produce stingrays via a payload source
 		Blocks.payloadSource.config(StingrayUnitType::class.java) { build: Building, unit: StingrayUnitType ->
-			if (build is PayloadSource.PayloadSourceBuild) {
+			if (build is PayloadSource.PayloadSourceBuild && Blocks.payloadSource.canProduce(unit) && unit != build.unit) {
 				build.unit = unit;
-				build.block = null;
+				//build.block = null; todo: what the fuck anuken
 				build.payload = null;
 				build.scl = 0f;
 			}
