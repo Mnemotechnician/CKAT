@@ -28,12 +28,12 @@ open class StingrayMod : Mod() {
 		
 		//make it possible to produce stingrays via a payload source
 		Blocks.payloadSource.config(StingrayUnitType::class.java) { build: Building, unit: StingrayUnitType ->
-			if (build !is PayloadSource.PayloadSourceBuild) return;
-			
-			build.unit = unit;
-			build.block = null;
-			build.payload = null;
-			build.scl = 0f;
+			if (build is PayloadSource.PayloadSourceBuild) {
+				build.unit = unit;
+				build.block = null;
+				build.payload = null;
+				build.scl = 0f;
+			}
 		}
 	}
 }
