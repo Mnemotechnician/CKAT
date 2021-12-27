@@ -1,6 +1,5 @@
 #!VERSION 2.1
 #!REPO "MHeMoTexHuK/CKAT"
-#!NO_UPDATE
 
 name: "ckat-stingray"
 description: "[royal]Adds an unique скат unit branch.[]\n\nNow in [accent]Kotlin[]!\n\n\nYes, this is a real mod. And you should install it immediately."
