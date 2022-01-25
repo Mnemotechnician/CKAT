@@ -11,18 +11,18 @@ import mindustry.gen.*;
 import mindustry.graphics.*;
 import mindustry.content.*;
 import mindustry.entities.*;
-
+import stingray.util.*
 import stingray.content.*;
 import stingray.entities.*;
 
-open class DashBehavior(var damage: Float, var reload: Float, var angleMax: Float, var range: Float) : BehaviorPattern("dash") {
+open class DashBehavior(var damage: Float = 0f, var reload: Float = 1f, var angleMax: Float = 0f, var range: Float = 0f) : BehaviorPattern("dash") {
 	
 	var target: mindustry.gen.Unit? = null;
-	var dashCharge: Float = 0f;
-	var dashTimer: Float = 0f;
-	var effectTimer: Float = 0f;
+	var dashCharge = 0f;
+	var dashTimer = 0f;
+	var effectTimer = 0f;
 	
-	var speed: Float = 2f;
+	var speed = 2f;
 	
 	constructor() : this(0f, 0f, 0f, 0f) {};
 	
@@ -83,15 +83,18 @@ open class DashBehavior(var damage: Float, var reload: Float, var angleMax: Floa
 		
 		table.table {
 			it.defaults().growX().pad(5f);
+			
 			it.add("@ckat-stingray.stat.damage");
 			it.add("@ckat-stingray.stat.reload");
 			it.add("@ckat-stingray.stat.angle");
 			it.add("@ckat-stingray.stat.range");
+			
 			it.row();
+			
 			it.add("$damage ${Core.bundle["ckat-stingray-upon-hit"]}");
-			it.add("${reload / 60} ${Core.bundle["ckat-stingray-seconds"]}");
+			it.add("${(reload / 60).toFixed(2)} ${Core.bundle["ckat-stingray-seconds"]}");
 			it.add("${angleMax * 2}°");
-			it.add("${range / 8} ${Core.bundle["ckat-stingray-blocks"]}");
+			it.add("${(range / 8).toFixed(2)} ${Core.bundle["ckat-stingray-blocks"]}");
 		}
 	}
 	

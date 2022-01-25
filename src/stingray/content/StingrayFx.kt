@@ -8,7 +8,10 @@ import mindustry.graphics.*;
 import mindustry.ctype.*;
 import mindustry.entities.*;
 
-open class StingrayFx : ContentList {
+object StingrayFx : ContentList {
+
+	lateinit var moveArrow: Effect;
+	lateinit var hurricaneSpawn: Effect;
 	
 	override open fun load() {
 		moveArrow = Effect(120f) {
@@ -36,11 +39,6 @@ open class StingrayFx : ContentList {
 			
 			Drawf.light(it.x, it.y, 16f, Pal.reactorPurple, 0.5f);
 		};
-	}
-	
-	companion object {
-		lateinit var moveArrow: Effect;
-		lateinit var hurricaneSpawn: Effect;
 	}
 	
 }

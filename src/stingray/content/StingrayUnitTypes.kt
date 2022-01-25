@@ -21,7 +21,12 @@ import stingray.entities.behavior.*;
 import stingray.ai.types.*;
 import stingray.type.*;
 
-open class StingrayUnitTypes : ContentList {
+object StingrayUnitTypes : ContentList {
+
+		lateinit var urotry: StingrayUnitType;
+	lateinit var mylio: StingrayUnitType;
+	lateinit var undulate: StingrayUnitType;
+	lateinit var dasya: StingrayUnitType;
 
 	override open fun load() {
 		urotry = object : StingrayUnitType("urotry") {}.apply {
@@ -122,63 +127,9 @@ open class StingrayUnitTypes : ContentList {
 				recoil = 8f;
 				shake = 1f;
 				ejectEffect = StingrayFx.hurricaneSpawn;
-				
-				bullet = object : BulletType() {
-					init {
-						collidesAir = false;
-						collidesGround = false;
-						collideTerrain = true;
-						lifetime = 400f;
-						homingPower = 0.02f;
-						shootEffect = Fx.none;
-						despawnEffect = Fx.none;
-					}
-					
-					lateinit var region: TextureRegion;
-					val suckRadius: Float = 90f;
-					val power: Float = 15f;
-					val visualSize: Float = 96f;
-					
-					
-					override fun load() {
-						region = Core.atlas.find("ckat-stingray-hurricane");
-					}
-					
-					override fun update(bullet: Bullet) {
-						super.update(bullet);
-						
-						Units.nearbyEnemies(bullet.team, bullet.x, bullet.y, suckRadius) {
-							val power = power / Math.cbrt((bullet.dst2(it) * it.hitSize).toDouble()).toFloat() * bullet.fout();
-							val angle = it.angleTo(bullet); 
-							
-							it.vel.x += Angles.trnsx(angle, power * Time.delta);
-							it.vel.y += Angles.trnsy(angle, power * Time.delta);
-							
-							it.damage(power * 0.01f * Time.delta);
-						};
-					}
-					
-					override fun draw(bullet: Bullet) {
-						val progress = Interp.sineOut.apply(bullet.fout());
-						Draw.alpha((bullet.fin() - 0.0125f) * 40f); /*5 + 10 ticks until full visibility*/
-						Draw.rect(region, bullet.x, bullet.y, visualSize * progress, visualSize * progress, Interp.sineIn.apply(progress) * 2880);
-					}
-					
-					//no idea, this is present in the original code
-					override fun continuousDamage(): Float {
-						return power * 0.01f * 60f;
-					}
-				}
+				bullet = StingrayBullets.hurricane
 			});
 		}
-	}
-
-	//what the hell
-	companion object {
-		lateinit var urotry: StingrayUnitType;
-		lateinit var mylio: StingrayUnitType;
-		lateinit var undulate: StingrayUnitType;
-		lateinit var dasya: StingrayUnitType;
 	}
 	
 }

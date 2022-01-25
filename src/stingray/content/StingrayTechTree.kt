@@ -1,14 +1,16 @@
 package stingray.content;
 
 import mindustry.*;
+import mindustry.gen.*
 import mindustry.type.*;
 import mindustry.ctype.*;
 import mindustry.content.*;
 import mindustry.world.blocks.units.*;
-
+import mindustry.world.blocks.payloads.*
+import stingray.type.*
 import stingray.content.*;
 
-open class StingrayTechTree : ContentList {
+object StingrayTechTree : ContentList {
 	
 	override open fun load() {
 		unitTech(StingrayUnitTypes.urotry, UnitTypes.dagger);
@@ -23,9 +25,19 @@ open class StingrayTechTree : ContentList {
 		(Blocks.additiveReconstructor as Reconstructor).addUpgrade(StingrayUnitTypes.urotry, StingrayUnitTypes.mylio);
 		(Blocks.multiplicativeReconstructor as Reconstructor).addUpgrade(StingrayUnitTypes.mylio, StingrayUnitTypes.undulate);
 		(Blocks.exponentialReconstructor as Reconstructor).addUpgrade(StingrayUnitTypes.undulate, StingrayUnitTypes.dasya);
+		
+		//make it possible to produce stingrays via a payload source
+		Blocks.payloadSource.config(StingrayUnitType::class.java) { build: Building, unit: StingrayUnitType ->
+			if (build is PayloadSource.PayloadSourceBuild && (Blocks.payloadSource as PayloadSource).canProduce(unit) && unit != build.unit) {
+				build.unit = unit;
+				//build.block = null; todo: what the fuck anuken
+				build.payload = null;
+				build.scl = 0f;
+			}
+		}
 	}
 	
-	inline fun unitTech(unit: UnitType, parent: UnitType) {
+	fun unitTech(unit: UnitType, parent: UnitType) {
 		TechTree.TechNode(TechTree.get(parent), unit, unit.researchRequirements());
 	};
 	

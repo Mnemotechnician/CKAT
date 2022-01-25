@@ -3,7 +3,7 @@ Adds an unique скат unit branch.
 
 Started as a shitpost, became an actual mod
 
-Also check out [the скат cult](https://discord.gg/bErvDXs9Rg)!
+Also check out the скат cult on discord!
 
 #
 # Скат mod: now in kotlin!

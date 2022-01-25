@@ -8,17 +8,17 @@ import arc.scene.ui.layout.*;
 import mindustry.gen.*;
 import mindustry.content.*;
 import mindustry.entities.*;
-
+import stingray.util.*
 import stingray.entities.*;
 
-open class BiteBehavior(var damage: Float, var reload: Float, var angleMax: Float, var padding: Float, var maxHeal: Float) : BehaviorPattern("bite") {
+open class BiteBehavior(var damage: Float = 0f, var reload: Float = 1f, var angleMax: Float = 0f, var padding: Float = 0f, var maxHeal: Float = 0f) : BehaviorPattern("bite") {
 	
-	var reloadTimer: Float = 0f;
-	var healed: Float = 0f;
+	var reloadTimer = 0f;
+	var healed = 0f;
 	
 	val effect = Fx.generate;
 	
-	constructor() : this(0f, 0f, 0f, 0f, 0f) {};
+	constructor() : this(0f, 1f, 0f, 0f, 0f) {};
 	
 	override open fun apply(parent: mindustry.gen.Unit) {
 		reloadTimer += Time.delta;
@@ -53,7 +53,11 @@ open class BiteBehavior(var damage: Float, var reload: Float, var angleMax: Floa
 				healed += damage / 5f;
 			}
 			
-			if (Mathf.chance(0.04) && enemy is mindustry.gen.Unit) enemy.`apply`(StatusEffects.unmoving, 100f);
+			if (enemy is mindustry.gen.Unit) {
+				if (Mathf.chance(0.04)) enemy.apply(StatusEffects.unmoving, 100f);
+				
+				if (Mathf.chance(0.33)) enemy.apply(StatusEffects.shocked, 50f)
+			}
 		}
 	}
 	
@@ -62,14 +66,17 @@ open class BiteBehavior(var damage: Float, var reload: Float, var angleMax: Floa
 		
 		table.table {
 			it.defaults().growX().pad(5f);
+			
 			it.add("@ckat-stingray.stat.damage");
 			it.add("@ckat-stingray.stat.reload");
 			it.add("@ckat-stingray.stat.angle");
 			it.add("@ckat-stingray.stat.range");
 			it.add("@ckat-stingray.stat.max-heal");
+			
 			it.row();
+			
 			it.add("$damage / ${Core.bundle["ckat-stingray-bite"]}");
-			it.add("${reload / 60} ${Core.bundle["ckat-stingray-seconds"]}");
+			it.add("${(reload / 60).toFixed(2)} ${Core.bundle["ckat-stingray-seconds"]}");
 			it.add("${angleMax * 2}°");
 			it.add("${padding / 8} ${Core.bundle["ckat-stingray-blocks"]}");
 			it.add("${maxHeal} / ${Core.bundle["ckat-stingray-bite"]}");

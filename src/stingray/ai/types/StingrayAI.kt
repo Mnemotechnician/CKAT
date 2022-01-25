@@ -1,5 +1,6 @@
 package stingray.ai.types;
 
+import arc.util.*
 import mindustry.*;
 import mindustry.ai.*;
 import mindustry.world.meta.*;
@@ -14,7 +15,7 @@ open class StingrayAI : AIController() {
 		val e = Units.closestTarget(unit.team, unit.x, unit.y, 260f, {true});
 		if (e != null) {
 			target = e;
-			moveTo(e, 6f);
+			unit.movePref(Tmp.v1.set(e).sub(unit).limit(unit.speed()));
 		} else if (command() == UnitCommand.rally) {
 			target = targetFlag(unit.x, unit.y, BlockFlag.rally, false);
 			if (target != null && !unit.within(target, 70f)) {

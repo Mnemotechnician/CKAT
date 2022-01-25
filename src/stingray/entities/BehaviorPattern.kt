@@ -7,18 +7,21 @@ import mindustry.gen.*;
 
 /** 
  * Similar to Ability, except that it's handled by the Unit object, one instance of pattern is created per unit and it's stats can displayed in the database
- * All patterns should have a constructor accepting no arguments, in order to avoid save corruption
+ * All patterns should have a constructor accepting no arguments, in order to allow to restore it during save loading
  */
 abstract open class BehaviorPattern(val name: String) {
-
+	
+	/** Called in the update function of the unit */
 	open fun apply(parent: mindustry.gen.Unit) {
 		
 	}
 	
+	/** Called in the draw function of the unit */
 	open fun draw(parent: mindustry.gen.Unit) {
 		
 	}
 	
+	/** Should display the ability in the core database */
 	open fun display(table: Table) {
 		table.add("@ckat-stingray.ability.$name").fillY().center().pad(5f).marginRight(15f);
 	}

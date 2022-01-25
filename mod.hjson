@@ -1,4 +1,4 @@
-#!VERSION 2.1
+#!VERSION 2.2
 #!REPO "Mnemotechnician/CKAT"
 
 name: "ckat-stingray"
@@ -6,7 +6,7 @@ description: "[royal]Adds an unique скат unit branch.[]\n\nNow in [accent]Ko
 displayName: "Скат [kotlin]"
 author: "Мнемотехник"
 minGameVersion: "133"
-version: "2.1"
+version: "2.2"
 
 main: "stingray.StingrayMod"
 
